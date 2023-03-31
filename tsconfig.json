@@ -23,7 +23,9 @@
     "**/*.ts",
     "**/*.tsx",
     "src/lib/firebase.ts",
-    "src/components/Navbar.tsx"
+    "src/components/Navbar.tsx",
+    "src/pages/enter.jsx",
+    "src/pages/_app.jsx"
   ],
   "exclude": ["node_modules"]
 }

@@ -1,6 +1,6 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps, getApp, FirebaseOptions } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
@@ -13,14 +13,24 @@ const firebaseConfig = {
   measurementId: "G-FDCKDD7HZ8",
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+function createFirebaseApp(config: any) {
+  try {
+    return getApp();
+  } catch {
+    return initializeApp(config);
+  }
+}
 
-// Initialize Cloud Firestore and get a reference to the service
-export const firestore = getFirestore(app);
+//Initialize app
+const app = createFirebaseApp(firebaseConfig);
+//const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
+export const googleAuthProvider = new GoogleAuthProvider();
+
+// Initialize Cloud Firestore and get a reference to the service
+export const firestore = getFirestore(app);
 
 // Initialize Cloud Storage and get a reference to the service
 export const storage = getStorage(app);
