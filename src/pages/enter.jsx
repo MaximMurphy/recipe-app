@@ -2,9 +2,11 @@ import { auth, firestore, googleAuthProvider } from "@/lib/firebase";
 import { doc, writeBatch, getDoc, getFirestore } from "firebase/firestore";
 import { signInWithPopup, signInAnonymously, signOut } from "firebase/auth";
 import { UserContext } from "@/lib/context";
+import { useRouter } from "next/router";
 
 import { useCallback, useContext, useEffect, useState } from "react";
 import debounce from "lodash.debounce";
+import toast from "react-hot-toast";
 
 export default function Enter(props) {
   const { user, username } = useContext(UserContext);
@@ -29,12 +31,19 @@ export default function Enter(props) {
 
 // Sign in with Google button
 function SignInButton() {
+  const router = useRouter();
+
   const signInWithGoogle = async () => {
     await signInWithPopup(auth, googleAuthProvider);
+    router.push("/");
+
+    toast("Howdy!", {
+      icon: "🤠",
+    });
   };
 
   return (
-    <>
+    <div className="enter">
       <button className="btn-google" onClick={signInWithGoogle}>
         <img src={"/google.png"} width="30px" alt="google" /> Sign in with
         Google
@@ -42,7 +51,7 @@ function SignInButton() {
       <button onClick={() => signInAnonymously(auth)}>
         Sign in Anonymously
       </button>
-    </>
+    </div>
   );
 }
 

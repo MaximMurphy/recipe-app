@@ -25,7 +25,11 @@
     "src/lib/firebase.ts",
     "src/components/Navbar.tsx",
     "src/pages/enter.jsx",
-    "src/pages/_app.jsx"
+    "src/pages/_app.jsx",
+    "src/components/PostFeed.jsx",
+    "src/components/UserProfile.jsx",
+    "src/pages/[username]/index.jsx",
+    "src/pages/index.jsx"
   ],
   "exclude": ["node_modules"]
 }

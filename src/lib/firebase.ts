@@ -1,5 +1,12 @@
 import { initializeApp, getApps, getApp, FirebaseOptions } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  limit,
+  query,
+  where,
+} from "firebase/firestore";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
@@ -34,3 +41,33 @@ export const firestore = getFirestore(app);
 
 // Initialize Cloud Storage and get a reference to the service
 export const storage = getStorage(app);
+
+/// Helper Functions
+
+/**
+ * Gets a users/{uid} document with username
+ * @param  {string} username
+ */
+export async function getUserWithUsername(username: any) {
+  const q = query(
+    collection(firestore, "users"),
+    where("username", "==", username),
+    limit(1)
+  );
+  const userDoc = (await getDocs(q)).docs[0];
+  return userDoc;
+}
+
+/**
+ * Converts a firestore document to JSON
+ * @param  {DocumentSnapshot} doc
+ */
+export function postToJSON(doc: any) {
+  const data = doc.data();
+  return {
+    ...data,
+    // Gotcha! firestore timestamp NOT serializable to JSON. Must convert to milliseconds
+    createdAt: data?.createdAt.toMillis() || 0,
+    updatedAt: data?.updatedAt.toMillis() || 0,
+  };
+}
