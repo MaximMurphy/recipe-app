@@ -1,30 +1,19 @@
 import Link from "next/link";
-import Image from "next/image";
-import { useRouter } from "next/router";
 import { useContext } from "react";
 import { UserContext } from "@/lib/context";
-import { auth } from "@/lib/firebase";
-import { signOut } from "firebase/auth";
 
 type Props = {};
 
-// Top Navbar
+// Top Navbars
 export const Navbar: React.FC<Props> = () => {
   const { user, username } = useContext(UserContext);
-
-  const router = useRouter();
-
-  const signOutNow = () => {
-    signOut(auth);
-    router.reload();
-  };
 
   return (
     <nav className="navbar">
       <ul>
         <li>
           <Link href="/">
-            <button className="btn-logo">RECIPE-APP</button>
+            <button className="btn-logo">FOOD</button>
           </Link>
         </li>
 
@@ -32,16 +21,13 @@ export const Navbar: React.FC<Props> = () => {
         {username && (
           <>
             <li className="push-left">
-              <button onClick={signOutNow}>Sign Out</button>
-            </li>
-            <li>
               <Link href="/admin">
-                <button className="btn-blue">Write Posts</button>
+                <button className="btn-base">Post</button>
               </Link>
             </li>
             <li>
               <Link href={`/${username}`}>
-                <img src={user?.photoURL || "/hacker.png"} />
+                <img src={user?.photoURL} />
               </Link>
             </li>
           </>
@@ -51,7 +37,7 @@ export const Navbar: React.FC<Props> = () => {
         {!username && (
           <li>
             <Link href="/enter">
-              <button className="btn-blue">Log in</button>
+              <button className="btn-base">Log in</button>
             </Link>
           </li>
         )}

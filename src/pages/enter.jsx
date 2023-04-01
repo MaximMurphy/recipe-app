@@ -134,7 +134,7 @@ function UsernameForm() {
             isValid={isValid}
             loading={loading}
           />
-          <button type="submit" className="btn-green" disabled={!isValid}>
+          <button type="submit" className="btn-select" disabled={!isValid}>
             Choose
           </button>
 
