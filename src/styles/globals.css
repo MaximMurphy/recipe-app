@@ -4,7 +4,8 @@
   --color-bg: #eef0f1;
   --color-text: #08090a;
   --color-gray: #b5bdc4;
-  --color-red: rgb(239, 88, 0);
+  --color-lightgray: #cecece;
+  --color-red: rgb(206, 75, 39);
   --color-blue: rgb(62, 77, 131);
   --color-lightgreen: yellowgreen;
   --color-olivedrab: olivedrab;
@@ -21,7 +22,7 @@ body {
 }
 
 main {
-  padding: 1rem 10vw;
+  padding: 1rem 8vw;
 }
 
 h1 {
@@ -118,7 +119,7 @@ code {
 
 .btn,
 button {
-  background-color: var(--color-gray);
+  background-color: var(--color-lightgray);
   border: none;
   color: var(--color-text);
   padding: 1rem 2rem;
@@ -161,6 +162,11 @@ button.btn-select {
   color: white;
 }
 
+button.btn-green {
+  background-color: var(--color-lightgreen);
+  color: white;
+}
+
 button.btn-blue {
   background-color: var(--color-olivedrab);
   color: white;
@@ -197,7 +203,7 @@ button.btn-logo {
 /* Cards */
 
 .card {
-  padding: 2rem;
+  padding: 1.25rem 2rem 2rem 2rem;
   margin: 1rem 0;
   background-color: white;
   border: 1px solid var(--color-gray);

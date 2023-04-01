@@ -43,6 +43,13 @@ function PostManager() {
   );
   const [post] = useDocumentDataOnce(postRef);
 
+  const goToLiveView = () => {
+    toast("Great Post!", {
+      icon: "👍",
+    });
+    router.push(`/${post.username}/${post.slug}`);
+  };
+
   return (
     <main className={styles.container}>
       {post && (
@@ -63,9 +70,11 @@ function PostManager() {
             <button onClick={() => setPreview(!preview)}>
               {preview ? "Edit" : "Preview"}
             </button>
-            <Link href={`/${post.username}/${post.slug}`}>
-              <button className="btn-blue">Live view</button>
-            </Link>
+
+            <button className="btn-blue" onClick={goToLiveView}>
+              Live view
+            </button>
+
             <DeletePostButton postRef={postRef} />
           </aside>
         </>
@@ -151,7 +160,7 @@ function DeletePostButton({ postRef }) {
   const router = useRouter();
 
   const deletePost = async () => {
-    const doIt = confirm("are you sure!");
+    const doIt = confirm("Are you sure you want to delete this review?");
     if (doIt) {
       await deleteDoc(postRef);
       router.push("/admin");
@@ -160,7 +169,7 @@ function DeletePostButton({ postRef }) {
   };
 
   return (
-    <button className="btn-red" onClick={deletePost}>
+    <button className="btn-danger" onClick={deletePost}>
       Delete
     </button>
   );

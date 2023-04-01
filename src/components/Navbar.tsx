@@ -22,7 +22,7 @@ export const Navbar: React.FC<Props> = () => {
           <>
             <li className="push-left">
               <Link href="/admin">
-                <button className="btn-base">Post</button>
+                <button className="btn-base">Write Review</button>
               </Link>
             </li>
             <li>

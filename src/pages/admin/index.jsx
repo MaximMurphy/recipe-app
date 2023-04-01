@@ -24,8 +24,9 @@ export default function AdminPostsPage(props) {
   return (
     <main>
       <AuthCheck>
-        <PostList />
+        <h1>Manage your reviews</h1>
         <CreateNewPost />
+        <PostList />
       </AuthCheck>
     </main>
   );
@@ -49,7 +50,6 @@ function PostList() {
 
   return (
     <>
-      <h1>Manage your Posts</h1>
       <PostFeed posts={posts} admin />
     </>
   );
@@ -78,7 +78,6 @@ function CreateNewPost() {
       slug,
       uid,
       username,
-      restaurantName: "",
       rating: 0,
       published: false,
       content: "# hello world!",
@@ -100,14 +99,14 @@ function CreateNewPost() {
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        placeholder="New Post Title"
+        placeholder="Restaurant Name"
         className={styles.input}
       />
       <p>
         <strong></strong> {slug}
       </p>
       <button type="submit" disabled={!isValid} className="btn-green">
-        Create New Post
+        Create New Review
       </button>
     </form>
   );
