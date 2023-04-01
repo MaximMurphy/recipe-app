@@ -98,16 +98,17 @@ function PostForm({ defaultValues, postRef, preview }) {
 
   const { isValid, isDirty } = formState;
 
-  const updatePost = async ({ content, published }) => {
+  const updatePost = async ({ content, published, rating }) => {
     await updateDoc(postRef, {
       content,
       published,
+      rating,
       updatedAt: serverTimestamp(),
     });
 
-    reset({ content, published });
+    reset({ content, published, rating });
 
-    toast.success("Post updated successfully!");
+    //toast.success("Post updated successfully!");
   };
 
   return (
@@ -119,7 +120,9 @@ function PostForm({ defaultValues, postRef, preview }) {
       )}
 
       <div className={preview ? styles.hidden : styles.controls}>
-        <ImageUploader />
+        <div className="uploadContainer">
+          <ImageUploader />
+        </div>
 
         <textarea
           name="content"
@@ -133,6 +136,16 @@ function PostForm({ defaultValues, postRef, preview }) {
         {errors.content && (
           <p className="text-danger">{errors.content.message}</p>
         )}
+        <label className="rating">Rating: </label>
+        <input
+          type="number"
+          name="rating"
+          min="0"
+          max="10"
+          {...register("rating", {
+            required: { value: true, message: "content is required" },
+          })}
+        ></input>
 
         <fieldset>
           <input

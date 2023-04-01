@@ -19,6 +19,7 @@ export default function PostContent({ post }) {
         on {createdAt.toISOString()}
       </span>
       <ReactMarkdown>{post?.content}</ReactMarkdown>
+      <h2>Rating: {post.rating}/10 🍞</h2>
     </div>
   );
 }

@@ -20,6 +20,11 @@
   height: 0;
 }
 
+.uploadContainer {
+  display: block;
+  float: left;
+}
+
 .hidden {
   display: none;
 }
@@ -50,6 +55,10 @@
   width: auto;
 }
 
+.rating {
+  padding-top: 10px;
+}
+
 @media only screen and (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -61,6 +70,8 @@
 
   .container aside {
     width: 100%;
+    top: 0;
     position: relative;
+    padding-bottom: 80%;
   }
 }

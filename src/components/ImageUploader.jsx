@@ -2,6 +2,7 @@ import { useState } from "react";
 import { auth, storage, STATE_CHANGED } from "@/lib/firebase";
 import { Loader } from "./Loader";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import toast from "react-hot-toast";
 
 // Uploads images to Firebase Storage
 export default function ImageUploader() {
@@ -41,10 +42,16 @@ export default function ImageUploader() {
         setDownloadURL(url);
         setUploading(false);
       });
+
+    const copyText = () => {
+      toast("Great Post!", {
+        icon: "👍",
+      });
+    };
   };
 
   return (
-    <div className="box">
+    <div className="boxUpload">
       {uploading && <h3>{progress}%</h3>}
 
       {!uploading && (
@@ -61,7 +68,19 @@ export default function ImageUploader() {
       )}
 
       {downloadURL && (
-        <code className="upload-snippet">{`![alt](${downloadURL})`}</code>
+        <div>
+          {/* 
+          <code className="upload-snippet">{`![alt](${downloadURL})`}</code>
+          */}
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(`![alt](${downloadURL})`);
+              toast.success("Text copied to clipboard");
+            }}
+          >
+            Copy Image Link
+          </button>
+        </div>
       )}
     </div>
   );

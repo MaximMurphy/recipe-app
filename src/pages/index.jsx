@@ -79,7 +79,7 @@ export default function Home(props) {
         <button onClick={getMorePosts}>Load more</button>
       )}
 
-      {postsEnd && "You have reached the end!"}
+      {postsEnd && "That's all!"}
     </main>
   );
 }
