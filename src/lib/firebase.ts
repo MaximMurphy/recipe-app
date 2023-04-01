@@ -41,6 +41,7 @@ export const firestore = getFirestore(app);
 
 // Initialize Cloud Storage and get a reference to the service
 export const storage = getStorage(app);
+export const STATE_CHANGED = "state_changed";
 
 /// Helper Functions
 

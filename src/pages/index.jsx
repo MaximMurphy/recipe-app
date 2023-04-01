@@ -67,9 +67,9 @@ export default function Home(props) {
       <div className="card card-info">
         <h2>This is a website about food </h2>
         <p>
-          🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🍈 🍒 🍑 🍍 🍅 🍆 🌶 🌽 🍠 🍯 🍞 🧀 🍗 🍖 🍤
-          🍳 🍔 🍟 🌭 🍕 🍝 🌮 🌯 🍜 🍲 🍥 🍣 🍱 🍛 🍙 🍚 🍘 🍧 🍨 🍦 🍰 🎂 🍮
-          🍬 🍭 🍫 🍿 🍩 🍪 🍺 🍷 🍸 🍾 🍵
+          🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍈 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🍆 🥑 🥦 🥬 🥒
+          🌶️ 🫑 🌽 🥕 🫒 🧄 🧅 🥔 🍠 🥐 🥯 🍞 🥖 🥨 🧀 🥚 🥞 🧇 🥓 🥩 🍗 🌭 🍔
+          🍟 🍕 🌮 🍣
         </p>
       </div>
 
