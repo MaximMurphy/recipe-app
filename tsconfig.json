@@ -29,7 +29,8 @@
     "src/components/PostFeed.jsx",
     "src/components/UserProfile.jsx",
     "src/pages/[username]/index.jsx",
-    "src/pages/index.jsx"
+    "src/pages/index.jsx",
+    "src/pages/[username]/[slug].jsx"
   ],
   "exclude": ["node_modules"]
 }

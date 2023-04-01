@@ -203,7 +203,7 @@ button.btn-logo {
 
 .card-info {
   color: white;
-  background: darkolivegreen;
+  background: var(--color-gray);
 }
 
 /* Loader */

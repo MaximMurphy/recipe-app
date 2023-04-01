@@ -65,11 +65,11 @@ export default function Home(props) {
   return (
     <main>
       <div className="card card-info">
-        <h2>This is a website about food</h2>
+        <h2>This is a website about food </h2>
         <p>
-          Sign up for an 👨‍🎤 account, ✍️ write posts, then 💞 heart content
-          created by other users. All public content is server-rendered and
-          search-engine optimized.
+          🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🍈 🍒 🍑 🍍 🍅 🍆 🌶 🌽 🍠 🍯 🍞 🧀 🍗 🍖 🍤
+          🍳 🍔 🍟 🌭 🍕 🍝 🌮 🌯 🍜 🍲 🍥 🍣 🍱 🍛 🍙 🍚 🍘 🍧 🍨 🍦 🍰 🎂 🍮
+          🍬 🍭 🍫 🍿 🍩 🍪 🍺 🍷 🍸 🍾 🍵
         </p>
       </div>
 
