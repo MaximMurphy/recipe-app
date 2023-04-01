@@ -4,6 +4,11 @@
   --color-bg: #eef0f1;
   --color-text: #08090a;
   --color-gray: #b5bdc4;
+  --color-red: rgb(239, 88, 0);
+  --color-blue: rgb(62, 77, 131);
+  --color-lightgreen: yellowgreen;
+  --color-olivedrab: olivedrab;
+  --color-green: darkolivegreen;
 }
 html,
 body {
@@ -152,7 +157,17 @@ button.btn-base {
 }
 
 button.btn-select {
-  background-color: yellowgreen;
+  background-color: var(--color-lightgreen);
+  color: white;
+}
+
+button.btn-blue {
+  background-color: var(--color-olivedrab);
+  color: white;
+}
+
+button.btn-danger {
+  background-color: var(--color-red);
   color: white;
 }
 
@@ -167,7 +182,7 @@ button.btn-google {
 }
 
 button.btn-logo {
-  background-color: darkolivegreen;
+  background-color: var(--color-green);
   color: white;
   text-transform: uppercase;
   font-size: 1.5rem;
@@ -210,7 +225,7 @@ button.btn-logo {
 
 .loader {
   border: 10px solid var(--color-bg);
-  border-top: 10px solid var(--color-blue);
+  border-top: 10px solid var(--color-olivedrab);
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -256,12 +271,12 @@ input[type="file"] {
 
 .text-success {
   font-weight: bold;
-  color: var(--color-green);
+  color: var(--color-lightgreen);
 }
 
 .text-info {
   font-weight: bold;
-  color: var(--color-blue);
+  color: var(--color-olivedrab);
 }
 
 .box {

@@ -31,7 +31,8 @@
     "src/pages/[username]/index.jsx",
     "src/pages/index.jsx",
     "src/pages/[username]/[slug].jsx",
-    "src/pages/admin/index.jsx"
+    "src/pages/admin/index.jsx",
+    "src/pages/admin/[slug].jsx"
   ],
   "exclude": ["node_modules"]
 }
