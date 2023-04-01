@@ -161,6 +161,9 @@ function PostForm({ defaultValues, postRef, preview }) {
           type="submit"
           className="btn-green"
           disabled={!isDirty || !isValid}
+          onClick={() => {
+            toast.success("Post updated successfully!");
+          }}
         >
           Save Changes
         </button>
