@@ -11,6 +11,8 @@ export default function PostContent({ post }) {
   return (
     <div className="card">
       <h1>{post?.title}</h1>
+      <h3>{post.dish}</h3>
+      <break></break>
       <span className="text-sm">
         Written by{" "}
         <Link legacyBehavior href={`/${post.username}/`}>

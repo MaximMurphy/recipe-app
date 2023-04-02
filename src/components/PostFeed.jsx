@@ -24,6 +24,8 @@ function PostItem({ post, admin = false }) {
           <a>{post.title}</a>
         </h2>
       </Link>
+      <h3>{post.dish}</h3>
+      <break></break>
 
       <footer>
         <span>Rating: {rating}/10 </span>

@@ -98,15 +98,16 @@ function PostForm({ defaultValues, postRef, preview }) {
 
   const { isValid, isDirty } = formState;
 
-  const updatePost = async ({ content, published, rating }) => {
+  const updatePost = async ({ dish, content, published, rating }) => {
     await updateDoc(postRef, {
+      dish,
       content,
       published,
       rating,
       updatedAt: serverTimestamp(),
     });
 
-    reset({ content, published, rating });
+    reset({ dish, content, published, rating });
 
     //toast.success("Post updated successfully!");
   };
@@ -120,11 +121,21 @@ function PostForm({ defaultValues, postRef, preview }) {
       )}
 
       <div className={preview ? styles.hidden : styles.controls}>
+        <input
+          className="shortEntry"
+          name="dish"
+          {...register("dish", {
+            required: { value: true, message: "content is required" },
+          })}
+          placeholder="[enter dish name]"
+        ></input>
+
         <div className="uploadContainer">
           <ImageUploader />
         </div>
 
         <textarea
+          className="bigEntry"
           name="content"
           {...register("content", {
             maxLength: { value: 20000, message: "content is too long" },

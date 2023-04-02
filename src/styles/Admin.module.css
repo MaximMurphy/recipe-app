@@ -34,12 +34,16 @@
   flex-direction: column;
 }
 
-.controls textarea {
+.controls textArea {
   height: 60vh;
   border: none;
   outline: none;
   padding: 0.5rem;
   font-size: 1.25rem;
+}
+
+.shortEntry {
+  max-height: 20vh;
 }
 
 .input {

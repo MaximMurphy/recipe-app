@@ -80,6 +80,7 @@ function CreateNewPost() {
       username,
       rating: 0,
       published: false,
+      dish: "",
       content: "",
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
