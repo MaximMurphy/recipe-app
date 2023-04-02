@@ -23,7 +23,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/lib/firebase.ts",
-    "src/components/Navbar.tsx",
+    "src/components/Navbar.jsx",
     "src/pages/enter.jsx",
     "src/pages/_app.jsx",
     "src/components/PostFeed.jsx",

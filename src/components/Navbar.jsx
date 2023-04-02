@@ -2,10 +2,8 @@ import Link from "next/link";
 import { useContext } from "react";
 import { UserContext } from "@/lib/context";
 
-type Props = {};
-
 // Top Navbars
-export const Navbar: React.FC<Props> = () => {
+export default function Navbar(props) {
   const { user, username } = useContext(UserContext);
 
   return (
@@ -44,4 +42,4 @@ export const Navbar: React.FC<Props> = () => {
       </ul>
     </nav>
   );
-};
+}
