@@ -10,6 +10,7 @@ import {
   collectionGroup,
   getDocs,
   getFirestore,
+  startAfter,
 } from "firebase/firestore";
 
 import { useState } from "react";
@@ -44,11 +45,17 @@ export default function Home(props) {
     setLoading(true);
     const last = posts[posts.length - 1];
 
+    const cursor =
+      typeof last.createdAt === "number"
+        ? Timestamp.fromMillis(last.createdAt)
+        : last.createdAt;
+
     const ref = collectionGroup(getFirestore(), "posts");
     const postsQuery = query(
       ref,
       where("published", "==", true),
       orderBy("createdAt", "desc"),
+      startAfter(cursor),
       limit(LIMIT)
     );
 

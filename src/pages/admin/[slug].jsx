@@ -131,6 +131,7 @@ function PostForm({ defaultValues, postRef, preview }) {
             minLength: { value: 10, message: "content is too short" },
             required: { value: true, message: "content is required" },
           })}
+          placeholder="[paste image link here]"
         ></textarea>
 
         {errors.content && (

@@ -35,7 +35,7 @@ function SignInButton() {
 
   const signInWithGoogle = async () => {
     await signInWithPopup(auth, googleAuthProvider);
-    router.push("/");
+    router.push("/enter");
 
     toast("Howdy!", {
       icon: "🤠",
@@ -149,6 +149,7 @@ function UsernameForm() {
             Choose
           </button>
 
+          {/*
           <h3>Debug State</h3>
           <div>
             Username: {formValue}
@@ -157,6 +158,7 @@ function UsernameForm() {
             <br />
             Username Valid: {isValid.toString()}
           </div>
+        */}
         </form>
       </section>
     )
