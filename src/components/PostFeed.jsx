@@ -26,7 +26,7 @@ function PostItem({ post, admin = false }) {
       </Link>
 
       <footer>
-        <span>Rating: {rating}/10 🍞</span>
+        <span>Rating: {rating}/10 </span>
         <span className="push-left">😋 {post.heartCount || 0} </span>
       </footer>
 

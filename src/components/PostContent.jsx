@@ -16,10 +16,10 @@ export default function PostContent({ post }) {
         <Link legacyBehavior href={`/${post.username}/`}>
           <a className="text-info">@{post.username}</a>
         </Link>{" "}
-        on {createdAt.toISOString()}
+        on {createdAt.toDateString()}
       </span>
       <ReactMarkdown>{post?.content}</ReactMarkdown>
-      <h2>Rating: {post.rating}/10 🍞</h2>
+      <h2>Rating: {post.rating}/10 </h2>
     </div>
   );
 }
