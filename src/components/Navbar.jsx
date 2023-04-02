@@ -2,9 +2,24 @@ import Link from "next/link";
 import { useContext } from "react";
 import { UserContext } from "@/lib/context";
 
+import { auth } from "@/lib/firebase";
+import { signOut } from "firebase/auth";
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
+
 // Top Navbars
 export default function Navbar(props) {
   const { user, username } = useContext(UserContext);
+
+  const router = useRouter();
+
+  const signOutNow = () => {
+    toast("See ya!", {
+      icon: "👋",
+    });
+    signOut(auth);
+    router.push("/enter");
+  };
 
   return (
     <nav className="navbar">
@@ -22,6 +37,11 @@ export default function Navbar(props) {
               <Link href="/admin">
                 <button className="btn-base">Write Review</button>
               </Link>
+            </li>
+            <li>
+              <button className="profileButton" onClick={signOutNow}>
+                Sign Out
+              </button>
             </li>
             <li>
               <Link href={`/${username}`}>

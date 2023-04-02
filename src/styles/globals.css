@@ -105,9 +105,13 @@ code {
 @media only screen and (max-width: 768px) {
   .navbar img {
     border-radius: 50%;
-    width: 52px;
+    width: 62px;
     height: 50px;
     cursor: pointer;
+  }
+
+  .navbar {
+    padding: 0 3.5vw;
   }
 }
 
@@ -215,7 +219,7 @@ button.btn-logo {
 }
 
 .card-img-center {
-  width: 20%;
+  width: 30%;
   display: block;
   margin: auto;
   border-radius: 50%;
