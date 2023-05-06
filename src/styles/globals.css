@@ -231,6 +231,37 @@ button.btn-logo {
   background: var(--color-gray);
 }
 
+.titleCard {
+  background-color: lightgrey;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-gray);
+  border-radius: 8px;
+  padding: 1.25rem 2rem 2rem 2rem;
+  margin: 1rem 0;
+}
+.title {
+  font-size: 2rem;
+}
+.emojis {
+  font-size: 1.3rem;
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) {
+  .title {
+    font-size: 3rem;
+  }
+  .emojis {
+    font-size: 3rem;
+  }
+  .titleCard {
+    justify-content: center;
+    padding: 5rem;
+    border-radius: 12px;
+  }
+}
+
 /* Loader */
 
 .loader {

@@ -71,12 +71,12 @@ export default function Home(props) {
 
   return (
     <main>
-      <div className="card card-info">
-        <h2>This is a website about food </h2>
-        <p>
+      <div className="titleCard card-info">
+        <h2 className="title">This is a website about food </h2>
+        <p className="emojis">
           🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍈 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🍆 🥑 🥦 🥬 🥒
           🌶️ 🫑 🌽 🥕 🫒 🧄 🧅 🥔 🍠 🥐 🥯 🍞 🥖 🥨 🧀 🥚 🥞 🧇 🥓 🥩 🍗 🌭 🍔
-          🍟 🍕 🌮 🍣
+          🍟 🍕 🌮 🍣 🍤 🍙 🧁 🍩
         </p>
       </div>
 
