@@ -22,12 +22,8 @@ body {
 }
 
 .main-content {
-  margin-left: 25%; /* move the content to the right of the navbar */
-  width: 75%; /* take up the remaining 75% of the screen */
-  padding: 2rem; /* add some padding to the content */
-}
-
-main {
+  margin-left: 25%;
+  width: 75%;
   padding: 1rem 8vw;
 }
 
@@ -91,7 +87,7 @@ button {
   font-weight: bold;
   border-radius: 0.25rem;
   cursor: pointer;
-  margin: 0.5rem 1rem 0.5rem 0;
+  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
 @media only screen and (max-width: 768px) {
@@ -149,6 +145,7 @@ button.btn-google {
 button.btn-logo {
   background-color: var(--color-green);
   color: white;
+  border-radius: 0.25rem;
   text-transform: uppercase;
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
@@ -184,37 +181,6 @@ button.btn-logo {
 .card-info {
   color: white;
   background: var(--color-gray);
-}
-
-.titleCard {
-  background-color: lightgrey;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--color-gray);
-  border-radius: 8px;
-  padding: 1.25rem 2rem 2rem 2rem;
-  margin: 1rem 0;
-}
-.title {
-  font-size: 2rem;
-}
-.emojis {
-  font-size: 1.3rem;
-}
-
-/* Tablet and Smaller Desktop */
-@media (min-width: 701px) {
-  .title {
-    font-size: 3rem;
-  }
-  .emojis {
-    font-size: 3rem;
-  }
-  .titleCard {
-    justify-content: center;
-    padding: 5rem;
-    border-radius: 12px;
-  }
 }
 
 /* Loader */

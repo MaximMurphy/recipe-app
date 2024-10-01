@@ -24,47 +24,62 @@ export default function Navbar(props) {
 
   return (
     <nav className={styles.navbar}>
-      <ul>
-        <li>
-          <Link href="/">
-            <button className="btn-logo">FOOD</button>
-          </Link>
-        </li>
+      <div className={styles.topNav}>
+        <p className={styles.emojis}>
+          🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🥑 🥦 🥬 🥒 🌶️ 🫑
+          🌽 🥕 🫒 🧄 🧅 🥔 🍠 🥐 🥯 🍞 🥖 🥨 🧀 🥞 🧇 🥓 🥩 🍗 🌭 🍔 🍟 🍕 🌮
+          🍣 🍩🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🥑 🥦 🥬 🥒 🌶️
+          🫑 🌽
+        </p>
+
+        {!username && (
+          <>
+            <Link href="/">
+              <button className="btn-logo">Home</button>
+            </Link>
+            <Link href="/enter">
+              <button className="btn-base">Log in</button>
+            </Link>
+          </>
+        )}
 
         {username && (
           <>
-            <li className="push-left">
-              <Link href="/admin">
-                <button className="btn-base">Write Review</button>
-              </Link>
-            </li>
-            <li>
-              <button className="profileButton" onClick={signOutNow}>
-                Sign Out
-              </button>
-            </li>
-            <li>
+            <div className={styles.loggedIn}>
               <Link href={`/${username}`}>
                 <Image
                   src={user?.photoURL}
                   alt="User profile picture"
-                  width={50}
-                  height={50}
-                  className="rounded-full"
+                  width={125}
+                  height={125}
+                  className={styles.profilePic}
                 />
               </Link>
-            </li>
+              <div className={styles.desktopOnly}>
+                <Link href="/" className={styles.logo}>
+                  <button className="btn-logo">Home Feed</button>
+                </Link>
+                <Link href="/admin">
+                  <button className="btn-base">Write Review</button>
+                </Link>
+                <button className="profileButton" onClick={signOutNow}>
+                  Sign Out
+                </button>
+              </div>
+            </div>
           </>
         )}
-
-        {!username && (
-          <li>
-            <Link href="/enter">
-              <button className="btn-base">Log in</button>
-            </Link>
-          </li>
-        )}
-      </ul>
+      </div>
+      <div className={styles.footer}>
+        <Link
+          href="https://www.maximmurphy.com"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Developed by Maxim Murphy.
+        </Link>
+        <p>Review Your Food © 2024. All rights reserved.</p>
+      </div>
     </nav>
   );
 }

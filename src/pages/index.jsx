@@ -71,15 +71,6 @@ export default function Home(props) {
 
   return (
     <main>
-      <div className="titleCard card-info">
-        <h2 className="title">This is a website about food </h2>
-        <p className="emojis">
-          🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍈 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🍆 🥑 🥦 🥬 🥒
-          🌶️ 🫑 🌽 🥕 🫒 🧄 🧅 🥔 🍠 🥐 🥯 🍞 🥖 🥨 🧀 🥚 🥞 🧇 🥓 🥩 🍗 🌭 🍔
-          🍟 🍕 🌮 🍣 🍤 🍙 🧁 🍩
-        </p>
-      </div>
-
       <PostFeed posts={posts} admin={undefined} />
 
       {!loading && !postsEnd && (
