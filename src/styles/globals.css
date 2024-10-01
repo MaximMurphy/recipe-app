@@ -68,57 +68,6 @@ code {
   overflow-x: scroll;
 }
 
-/* Navbar */
-
-.navbar {
-  height: 80px;
-  width: 100%;
-  background: white;
-  color: var(--colors-text);
-  position: fixed;
-  top: 0;
-  padding: 0 2vw;
-  font-weight: bold;
-  border-bottom: 1px solid var(--color-gray);
-  z-index: 99;
-}
-
-.navbar ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-}
-
-@media only screen and (min-width: 768px) {
-  .navbar img {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .navbar img {
-    border-radius: 50%;
-    width: 62px;
-    height: 50px;
-    cursor: pointer;
-  }
-
-  .navbar {
-    padding: 0 3.5vw;
-  }
-}
-
-.navbar li {
-  border-radius: 50%;
-}
-
 /* Buttons */
 
 .btn,

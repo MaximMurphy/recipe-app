@@ -7,6 +7,8 @@ import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 
+import styles from "../styles/Navbar.module.css";
+
 // Top Navbars
 export default function Navbar(props) {
   const { user, username } = useContext(UserContext);
@@ -22,7 +24,7 @@ export default function Navbar(props) {
   };
 
   return (
-    <nav className="navbar">
+    <nav className={styles.navbar}>
       <ul>
         <li>
           <Link href="/">
