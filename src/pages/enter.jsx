@@ -15,7 +15,7 @@ export default function Enter(props) {
   // 2. user signed in, but missing username <UsernameForm />
   // 3. user signed in, has username <SignOutButton />
   return (
-    <main>
+    <main className="enter">
       {user ? (
         !username ? (
           <UsernameForm />
@@ -43,16 +43,11 @@ function SignInButton() {
   };
 
   return (
-    <div className="enter">
+    <div>
       <button className="btn-google" onClick={signInWithGoogle}>
         <img src={"/google.png"} width="30px" alt="google" /> Sign in with
         Google
       </button>
-      {/* 
-      <button onClick={() => signInAnonymously(auth)}>
-        Sign in Anonymously
-      </button>
-      */}
     </div>
   );
 }
@@ -148,17 +143,6 @@ function UsernameForm() {
           <button type="submit" className="btn-select" disabled={!isValid}>
             Choose
           </button>
-
-          {/*
-          <h3>Debug State</h3>
-          <div>
-            Username: {formValue}
-            <br />
-            Loading: {loading.toString()}
-            <br />
-            Username Valid: {isValid.toString()}
-          </div>
-        */}
         </form>
       </section>
     )
