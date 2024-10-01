@@ -1,0 +1,34 @@
+/* 
+    MOBILE SCREEN
+*/
+.left {
+  display: hidden;
+}
+
+/* 
+    DESKTOP SCREEN
+*/
+@media (min-width: 769px) {
+  .left {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.6rem;
+    font-weight: 400;
+    color: grey;
+    height: fit-content;
+    width: 100%;
+  }
+
+  .footer p {
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+}

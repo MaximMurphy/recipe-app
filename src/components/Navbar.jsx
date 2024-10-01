@@ -23,62 +23,35 @@ export default function Navbar(props) {
   };
 
   return (
-    <nav className={styles.navbar}>
-      <div className={styles.topNav}>
-        <p className={styles.emojis}>
-          🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🥑 🥦 🥬 🥒 🌶️ 🫑
-          🌽 🥕 🫒 🧄 🧅 🥔 🍠 🥐 🥯 🍞 🥖 🥨 🧀 🥞 🧇 🥓 🥩 🍗 🌭 🍔 🍟 🍕 🌮
-          🍣 🍩🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🥑 🥦 🥬 🥒 🌶️
-          🫑 🌽
-        </p>
-
+    <nav className={styles.nav}>
+      <Link href="/" className={styles.logo}>
+        <button className="btn-logo">Home Feed</button>
+      </Link>
+      <div>
         {!username && (
-          <>
-            <Link href="/">
-              <button className="btn-logo">Home</button>
-            </Link>
-            <Link href="/enter">
-              <button className="btn-base">Log in</button>
-            </Link>
-          </>
+          <Link href="/enter">
+            <button className="btn-base">Log in</button>
+          </Link>
         )}
 
         {username && (
-          <>
-            <div className={styles.loggedIn}>
-              <Link href={`/${username}`}>
-                <Image
-                  src={user?.photoURL}
-                  alt="User profile picture"
-                  width={125}
-                  height={125}
-                  className={styles.profilePic}
-                />
+          <div className={styles.loggedIn}>
+            <Link href={`/${username}`}>
+              <Image
+                src={user?.photoURL}
+                alt="User profile picture"
+                width={50}
+                height={50}
+                className={styles.profilePic}
+              />
+            </Link>
+            <div className={styles.desktopOnly}>
+              <Link href="/admin">
+                <button className="btn-base">Write Review</button>
               </Link>
-              <div className={styles.desktopOnly}>
-                <Link href="/" className={styles.logo}>
-                  <button className="btn-logo">Home Feed</button>
-                </Link>
-                <Link href="/admin">
-                  <button className="btn-base">Write Review</button>
-                </Link>
-                <button className="profileButton" onClick={signOutNow}>
-                  Sign Out
-                </button>
-              </div>
             </div>
-          </>
+          </div>
         )}
-      </div>
-      <div className={styles.footer}>
-        <Link
-          href="https://www.maximmurphy.com"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Developed by Maxim Murphy.
-        </Link>
-        <p>Review Your Food © 2024. All rights reserved.</p>
       </div>
     </nav>
   );

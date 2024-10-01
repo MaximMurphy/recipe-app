@@ -4,6 +4,10 @@ import { Toaster } from "react-hot-toast";
 import { UserContext } from "@/lib/context";
 import { useUserData } from "@/lib/hooks";
 
+/* 🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🥑 🥦 🥬 🥒 🌶️ 🫑 
+🌽 🥕 🫒 🧄 🧅 🥔 🍠 🥐 🥯 🍞 🥖 🥨 🧀 🥞 🧇 🥓 🥩 🌭 🍔 🍟 🍕 🌮 🍣 🍩
+*/
+
 export default function App({ Component, pageProps }) {
   const userData = useUserData();
 

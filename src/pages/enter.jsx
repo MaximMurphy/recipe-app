@@ -54,7 +54,16 @@ function SignInButton() {
 
 // Sign out button
 function SignOutButton() {
-  return <button onClick={() => auth.signOut()}>Sign Out</button>;
+  const router = useRouter();
+  const signOutNow = () => {
+    toast("See ya!", {
+      icon: "👋",
+    });
+    auth.signOut();
+    router.push("/");
+  };
+
+  return <button onClick={signOutNow}>Sign Out</button>;
 }
 
 // Username form
