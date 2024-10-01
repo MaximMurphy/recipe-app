@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useContext } from "react";
 import { UserContext } from "@/lib/context";
-
+import Image from "next/image";
 import { auth } from "@/lib/firebase";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
@@ -47,7 +47,13 @@ export default function Navbar(props) {
             </li>
             <li>
               <Link href={`/${username}`}>
-                <img src={user?.photoURL} />
+                <Image
+                  src={user?.photoURL}
+                  alt="User profile picture"
+                  width={50}
+                  height={50}
+                  className="rounded-full"
+                />
               </Link>
             </li>
           </>
