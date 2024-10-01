@@ -9,7 +9,6 @@ import toast from "react-hot-toast";
 
 import styles from "../styles/Navbar.module.css";
 
-// Top Navbars
 export default function Navbar(props) {
   const { user, username } = useContext(UserContext);
 
@@ -32,7 +31,6 @@ export default function Navbar(props) {
           </Link>
         </li>
 
-        {/* user is signed-in and has username */}
         {username && (
           <>
             <li className="push-left">
@@ -59,7 +57,6 @@ export default function Navbar(props) {
           </>
         )}
 
-        {/* user is not signed OR has not created username */}
         {!username && (
           <li>
             <Link href="/enter">

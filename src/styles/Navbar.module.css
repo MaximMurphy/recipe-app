@@ -1,5 +1,3 @@
-/* Navbar */
-
 .navbar {
   height: 80px;
   width: 100%;
@@ -11,6 +9,9 @@
   font-weight: bold;
   border-bottom: 1px solid var(--color-gray);
   z-index: 99;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .navbar ul {
@@ -21,30 +22,27 @@
   align-items: center;
   justify-content: space-between;
   height: 100%;
-}
-
-@media only screen and (min-width: 768px) {
-  .navbar img {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .navbar img {
-    border-radius: 50%;
-    width: 62px;
-    height: 50px;
-    cursor: pointer;
-  }
-
-  .navbar {
-    padding: 0 3.5vw;
-  }
+  flex: 1;
+  margin-right: 2rem;
 }
 
 .navbar li {
   border-radius: 50%;
+}
+
+@media (min-width: 769px) {
+  .navbar {
+    height: 100vh;
+    width: 25%;
+    position: fixed;
+    left: 0;
+    border-right: 1px solid var(--color-gray);
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+  }
 }
