@@ -21,6 +21,12 @@ body {
   margin-top: 50px;
 }
 
+.main-content {
+  margin-left: 25%; /* move the content to the right of the navbar */
+  width: 75%; /* take up the remaining 75% of the screen */
+  padding: 2rem; /* add some padding to the content */
+}
+
 main {
   padding: 1rem 8vw;
 }

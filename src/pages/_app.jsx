@@ -11,7 +11,9 @@ export default function App({ Component, pageProps }) {
     <>
       <UserContext.Provider value={userData}>
         <Navbar />
-        <Component {...pageProps} />
+        <div className="main-content">
+          <Component {...pageProps} />
+        </div>
         <Toaster />
       </UserContext.Provider>
     </>
