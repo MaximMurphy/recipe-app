@@ -24,8 +24,9 @@ export default function Navbar(props) {
 
   return (
     <nav className={styles.nav}>
+      <button>🍞</button>
       <Link href="/" className={styles.logo}>
-        <button className="btn-logo">Home Feed</button>
+        <h1>review your food</h1>
       </Link>
       <div>
         {!username && (

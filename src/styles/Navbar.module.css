@@ -18,6 +18,11 @@
   justify-content: space-between;
 }
 
+.logo {
+  font-size: 0.8rem;
+  color: var(--color-green);
+}
+
 .profilePic {
   border-radius: 50%;
   width: 100%;
@@ -35,6 +40,10 @@
 */
 
 @media (min-width: 769px) {
+  .logo {
+    font-size: 1rem;
+  }
+
   .desktopOnly {
     display: flex;
     flex-direction: row;
