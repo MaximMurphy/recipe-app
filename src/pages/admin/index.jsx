@@ -11,7 +11,6 @@ export default function AdminPostsPage(props) {
     <main>
       <AuthCheck>
         <h1>Manage your reviews</h1>
-        <CreateNewPost />
         <PostList />
       </AuthCheck>
     </main>

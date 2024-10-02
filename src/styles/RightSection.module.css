@@ -5,6 +5,25 @@
   display: none;
 }
 
+.list {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: auto;
+  border: 2px solid var(--color-olivedrab);
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.title {
+  color: var(--color-green);
+  margin-top: 0px;
+}
+
 /* 
     DESKTOP SCREEN
 */
@@ -13,9 +32,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 100%;
-    width: 20%;
+    width: 22%;
     position: fixed;
     top: 0;
     right: 0;

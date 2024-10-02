@@ -40,6 +40,7 @@ export default function CreateNewPost() {
     };
 
     await setDoc(ref, data);
+    setTitle("");
 
     toast.success("Post created! 🔥");
 
