@@ -1,5 +1,6 @@
 import PostFeed from "@/components/PostFeed";
 import { Loader } from "@/components/Loader";
+import FeedSelector from "@/components/FeedSelector";
 import { firestore, postToJSON } from "@/lib/firebase";
 import {
   Timestamp,
@@ -71,6 +72,7 @@ export default function Home(props) {
 
   return (
     <main>
+      <FeedSelector />
       <PostFeed posts={posts} admin={undefined} />
 
       {!loading && !postsEnd && (
