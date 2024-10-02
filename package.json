@@ -27,6 +27,7 @@
     "typescript": "5.0.2"
   },
   "devDependencies": {
+    "@iconify-icon/react": "^2.1.0",
     "@types/lodash.debounce": "^4.0.7",
     "@types/lodash.kebabcase": "^4.1.7"
   }

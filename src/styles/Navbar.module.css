@@ -91,12 +91,12 @@
 
   .leftSide {
     width: 20%;
-    padding: 20px;
+    padding-left: 20px;
   }
 
   .rightSide {
     width: 20%;
-    padding: 20px;
+    padding-right: 20px;
   }
 
   .center {

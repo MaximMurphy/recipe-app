@@ -3,6 +3,7 @@ import { doc, writeBatch, getDoc, getFirestore } from "firebase/firestore";
 import { signInWithPopup, signInAnonymously, signOut } from "firebase/auth";
 import { UserContext } from "@/lib/context";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 import { useCallback, useContext, useEffect, useState } from "react";
 import debounce from "lodash.debounce";
@@ -45,8 +46,8 @@ function SignInButton() {
   return (
     <div>
       <button className="btn-google" onClick={signInWithGoogle}>
-        <img src={"/google.png"} width="30px" alt="google" /> Sign in with
-        Google
+        <Image src={"/google.png"} width={30} height={30} alt="google" />
+        Sign in with Google
       </button>
     </div>
   );
