@@ -26,9 +26,9 @@
   align-items: center;
   justify-content: flex-start;
   padding-left: 10px;
-  width: 30%;
+  width: 50%;
   height: 100%;
-  border: red solid 1px;
+  gap: 1rem;
 }
 
 .rightSide {
@@ -39,16 +39,14 @@
   padding-right: 10px;
   width: 30%;
   height: 100%;
-  border: red solid 1px;
 }
 
 .center {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 40%;
+  width: 20%;
   height: 100%;
-  border: blue solid 1px;
 }
 
 .breadEmoji {
@@ -58,8 +56,6 @@
 .logo {
   font-size: 0.7rem;
   color: var(--color-green);
-  flex: 1;
-  text-align: center;
 }
 
 .btn-base {

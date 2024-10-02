@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
 import LeftSection from "@/components/LeftSection";
 import RightSection from "@/components/RightSection";
+import Footer from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
 import { UserContext } from "@/lib/context";
 import { useUserData } from "@/lib/hooks";
@@ -22,6 +23,7 @@ export default function App({ Component, pageProps }) {
           <Component {...pageProps} />
         </div>
         <RightSection />
+        <Footer />
         <Toaster />
       </UserContext.Provider>
     </>

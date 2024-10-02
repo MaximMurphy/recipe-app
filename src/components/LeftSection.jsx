@@ -10,15 +10,6 @@ export default function LeftSection() {
           <button className="btn-base">Write Review</button>
         </Link>
       </div>
-      <div className={styles.footer}>
-        <Link
-          href="https://www.maximmurphy.com"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Developed by Maxim Murphy.
-        </Link>
-      </div>
     </section>
   );
 }

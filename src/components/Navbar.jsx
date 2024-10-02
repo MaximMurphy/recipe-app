@@ -17,12 +17,11 @@ export default function Navbar(props) {
     <nav className={styles.nav}>
       <div className={styles.leftSide}>
         <p className={styles.breadEmoji}>🍞</p>
-      </div>
-      <div className={styles.center}>
         <Link href="/" className={styles.logo}>
           <h1>review your food</h1>
         </Link>
       </div>
+      <div className={styles.center}></div>
 
       <div className={styles.rightSide}>
         {!username && (
