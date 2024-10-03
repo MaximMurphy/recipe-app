@@ -1,6 +1,6 @@
 import styles from "@/styles/Admin.module.css";
 import AuthCheck from "@/components/AuthCheck";
-import { firestore, auth } from "@/lib/firebase";
+import { auth } from "@/lib/firebase";
 import {
   serverTimestamp,
   doc,
@@ -97,6 +97,13 @@ function PostForm({ defaultValues, postRef, preview }) {
   });
 
   const { isValid, isDirty } = formState;
+  const [downloadURL, setDownloadURL] = useState(null);
+
+  const router = useRouter();
+
+  const handleImageUpload = (url) => {
+    setDownloadURL(url);
+  };
 
   const updatePost = async ({ dish, content, published, rating }) => {
     await updateDoc(postRef, {
@@ -104,6 +111,7 @@ function PostForm({ defaultValues, postRef, preview }) {
       content,
       published,
       rating,
+      imageLink: downloadURL,
       updatedAt: serverTimestamp(),
     });
 
@@ -131,7 +139,7 @@ function PostForm({ defaultValues, postRef, preview }) {
         ></input>
 
         <div className="uploadContainer">
-          <ImageUploader />
+          <ImageUploader onUpload={handleImageUpload} />
         </div>
 
         <textarea
@@ -174,6 +182,7 @@ function PostForm({ defaultValues, postRef, preview }) {
           className="btn-green"
           disabled={!isDirty || !isValid}
           onClick={() => {
+            router.push("/admin");
             toast.success("Post updated successfully!");
           }}
         >
