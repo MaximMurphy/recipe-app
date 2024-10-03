@@ -57,7 +57,16 @@ function SignInButton() {
   };
 
   return (
-    <div>
+    <div className="sign-in-button">
+      <div className="emoji-background">
+        <p>
+          🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🥑 🥦 🥬 🥒 🌶️ 🫑
+          🌽 🥕 🫒 🧄 🧅 🥔 🍠 🥐 🥯 🍞 🥖 🥨 🧀 🥞 🧇 🥓 🥩 🌭 🍔 🍟 🍕 🌮 🍣
+          🍩 🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🥑 🥦 🥬 🥒 🌶️
+          🫑 🌽 🥕 🫒 🧄 🧅 🥔 🍠 🥐 🥯 🍞 🥖 🥨 🧀 🥞 🧇 🥓 🥩 🌭 🍔 🍟 🍕 🌮
+          🍣 🍩
+        </p>
+      </div>
       <button className="btn-google" onClick={signInWithGoogle}>
         <Image src={"/google.png"} width={30} height={30} alt="google" />
         Sign in with Google

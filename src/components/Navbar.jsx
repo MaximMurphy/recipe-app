@@ -34,7 +34,7 @@ export default function Navbar(props) {
 
         {username && (
           <div className={styles.loggedIn}>
-            <Link href="/enter">
+            <Link href={`/${username}`}>
               <Image
                 src={user?.photoURL}
                 alt="User profile picture"

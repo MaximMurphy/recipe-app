@@ -39,7 +39,7 @@ export default function LeftNav() {
             <Icon icon="carbon:edit" className={styles.icon} />
             <p>Edit Reviews</p>
           </Link>
-          <Link href="/enter" className={styles.item}>
+          <Link href={`/${username}`} className={styles.item}>
             <Icon icon="carbon:user" className={styles.icon} />
             <p>User Profile</p>
           </Link>

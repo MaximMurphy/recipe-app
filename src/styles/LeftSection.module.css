@@ -46,10 +46,6 @@
   font-size: 30px;
 }
 
-.signout {
-  font-weight: 400;
-}
-
 /* 
     DESKTOP SCREEN
 */
@@ -79,5 +75,9 @@
 
   .item {
     width: 75%;
+  }
+
+  .signout {
+    font-weight: 400;
   }
 }
