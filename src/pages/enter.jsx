@@ -1,6 +1,6 @@
-import { auth, firestore, googleAuthProvider } from "@/lib/firebase";
+import { auth, googleAuthProvider } from "@/lib/firebase";
 import { doc, writeBatch, getDoc, getFirestore } from "firebase/firestore";
-import { signInWithPopup, signInAnonymously, signOut } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import { UserContext } from "@/lib/context";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -33,10 +33,23 @@ export default function Enter(props) {
 // Sign in with Google button
 function SignInButton() {
   const router = useRouter();
+  const { username } = useContext(UserContext);
 
   const signInWithGoogle = async () => {
-    await signInWithPopup(auth, googleAuthProvider);
-    router.push("/enter");
+    try {
+      await signInWithPopup(auth, googleAuthProvider);
+      const userDoc = await getDoc(
+        doc(getFirestore(), "users", auth.currentUser.uid)
+      );
+      const username = userDoc.data().username;
+      if (username) {
+        router.push("/");
+      } else {
+        router.push("/enter");
+      }
+    } catch (error) {
+      console.error(error);
+    }
 
     toast("Howdy!", {
       icon: "🤠",

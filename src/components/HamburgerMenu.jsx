@@ -35,7 +35,11 @@ export default function HamburgerMenu() {
           </span>
         ) : (
           <span className={styles.icon}>
-            <Icon icon="material-symbols:menu" width="25px" height="25px" />
+            <Icon
+              icon="line-md:close-to-menu-transition"
+              width="25"
+              height="25"
+            />
           </span>
         )}
       </button>
