@@ -32,7 +32,7 @@ function PostList() {
 
   return (
     <>
-      <PostFeed posts={posts} admin />
+      <PostFeed posts={posts} feedSelection="all" admin />
     </>
   );
 }

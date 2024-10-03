@@ -1,11 +1,49 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-export default function PostFeed({ posts, admin }) {
-  return posts
-    ? posts.map((post) => (
+export default function PostFeed({ posts, feedSelection, admin }) {
+  const [filteredPosts, setFilteredPosts] = useState(posts);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [postsEnd, setPostsEnd] = useState(false);
+
+  useEffect(() => {
+    let filtered = posts;
+
+    if (feedSelection === "popular") {
+      filtered = filtered
+        .filter((post) => post.heartCount >= 1)
+        .sort((a, b) => b.heartCount - a.heartCount);
+    }
+
+    setFilteredPosts(filtered);
+  }, [feedSelection, posts]);
+
+  const LIMIT = 10;
+
+  const getMorePosts = () => {
+    const startIndex = currentPage * LIMIT;
+    const endIndex = startIndex + LIMIT;
+    const newPosts = filteredPosts.slice(startIndex, endIndex);
+
+    setCurrentPage(currentPage + 1);
+
+    if (newPosts.length < LIMIT) {
+      setPostsEnd(true);
+    }
+  };
+  if (!filteredPosts) return <div>Loading...</div>;
+
+  return (
+    <div>
+      {filteredPosts.slice(0, (currentPage + 1) * LIMIT).map((post) => (
         <PostItem post={post} key={post.slug} admin={admin} />
-      ))
-    : null;
+      ))}
+
+      {!postsEnd && <button onClick={getMorePosts}>Load more</button>}
+
+      {postsEnd && "That's all!"}
+    </div>
+  );
 }
 
 function PostItem({ post, admin = false }) {

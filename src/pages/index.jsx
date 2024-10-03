@@ -1,7 +1,7 @@
 import PostFeed from "@/components/PostFeed";
-import { Loader } from "@/components/Loader";
 import FeedSelector from "@/components/FeedSelector";
-import { firestore, postToJSON } from "@/lib/firebase";
+import { useState } from "react";
+import { postToJSON } from "@/lib/firebase";
 import {
   Timestamp,
   query,
@@ -14,21 +14,16 @@ import {
   startAfter,
 } from "firebase/firestore";
 
-import { useState } from "react";
-
-// Max post to query per page
-const LIMIT = 10;
-
 export async function getServerSideProps(context) {
   const ref = collectionGroup(getFirestore(), "posts");
   const postsQuery = query(
     ref,
     where("published", "==", true),
-    orderBy("createdAt", "desc"),
-    limit(LIMIT)
+    orderBy("createdAt", "desc")
   );
 
-  const posts = (await getDocs(postsQuery)).docs.map(postToJSON);
+  const postsSnapshot = await getDocs(postsQuery);
+  const posts = postsSnapshot.docs.map((doc) => postToJSON(doc));
 
   return {
     props: { posts }, // will be passed to the page component as props
@@ -36,50 +31,18 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home(props) {
-  const [posts, setPosts] = useState(props.posts);
-  const [loading, setLoading] = useState(false);
-
-  const [postsEnd, setPostsEnd] = useState(false);
-
-  // Get next page in pagination query
-  const getMorePosts = async () => {
-    setLoading(true);
-    const last = posts[posts.length - 1];
-
-    const cursor =
-      typeof last.createdAt === "number"
-        ? Timestamp.fromMillis(last.createdAt)
-        : last.createdAt;
-
-    const ref = collectionGroup(getFirestore(), "posts");
-    const postsQuery = query(
-      ref,
-      where("published", "==", true),
-      orderBy("createdAt", "desc"),
-      startAfter(cursor),
-      limit(LIMIT)
-    );
-
-    const newPosts = (await getDocs(postsQuery)).docs.map((doc) => doc.data());
-
-    setPosts(posts.concat(newPosts));
-    setLoading(false);
-
-    if (newPosts.length < LIMIT) {
-      setPostsEnd(true);
-    }
-  };
+  const [feedSelection, setFeedSelection] = useState("all");
 
   return (
     <main>
-      <FeedSelector />
-      <PostFeed posts={posts} admin={undefined} />
-
-      {!loading && !postsEnd && (
-        <button onClick={getMorePosts}>Load more</button>
-      )}
-
-      {postsEnd && "That's all!"}
+      <FeedSelector
+        onFeedSelectionChange={(selection) => setFeedSelection(selection)}
+      />
+      <PostFeed
+        posts={props.posts}
+        feedSelection={feedSelection}
+        admin={undefined}
+      />
     </main>
   );
 }
