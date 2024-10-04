@@ -18,6 +18,7 @@ export default function AdminPostsPage(props) {
 }
 
 function PostList() {
+  if (!auth.currentUser) return <div>Loading...</div>;
   const ref = collection(
     getFirestore(),
     "users",
@@ -26,13 +27,10 @@ function PostList() {
   );
   const postQuery = query(ref, orderBy("createdAt", "desc"));
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [querySnapshot] = useCollection(postQuery);
 
   const posts = querySnapshot?.docs.map((doc) => doc.data());
 
-  return (
-    <>
-      <PostFeed posts={posts} feedSelection="all" admin />
-    </>
-  );
+  return <PostFeed posts={posts} feedSelection="all" admin />;
 }

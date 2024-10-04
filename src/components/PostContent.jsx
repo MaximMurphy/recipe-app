@@ -41,7 +41,7 @@ export default function PostContent({ post, postRef }) {
       </div>
       <div className={styles.footer}>
         <p className={styles.date}>{createdAt.toDateString()}</p>
-        <p className={styles.heart}>
+        <div className={styles.heart}>
           <AuthCheck
             fallback={
               <Link href="/enter">
@@ -54,7 +54,7 @@ export default function PostContent({ post, postRef }) {
               <p className={styles.heart}>{post.heartCount || 0} </p>
             </div>
           </AuthCheck>
-        </p>
+        </div>
       </div>
     </div>
   );

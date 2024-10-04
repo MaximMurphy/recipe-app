@@ -60,34 +60,33 @@ function PostItem({ post, admin = false }) {
 
   return (
     <div className={styles.card}>
-      <Link href={`/${post.username}/${post.slug}`}>
-        <div className={styles.header}>
-          <div className={styles.info}>
-            <Link
-              href={`/${post.username}`}
-              className={styles.usernameContainer}
-            >
-              <p className={styles.username}> {"@" + post.username}</p>
-            </Link>
-            <div className={styles.titleContainer}>
-              <h2 className={styles.title}>{post.title}</h2>
-              <h3 className={styles.dish}>{post.dish}</h3>
-            </div>
-            <p className={styles.rating}>{rating}/10</p>
-          </div>
-
-          <div className={styles.imageContainer}>
-            <Image
-              alt={post.title}
-              src={post.imageLink}
-              width={200}
-              height={200}
-              priority
-              className={styles.image}
-            />
-          </div>
+      <div className={styles.header}>
+        <div className={styles.info}>
+          <Link href={`/${post.username}`} className={styles.usernameContainer}>
+            <p className={styles.username}> {"@" + post.username}</p>
+          </Link>
+          <Link
+            href={`/${post.username}/${post.slug}`}
+            className={styles.titleContainer}
+          >
+            <h2 className={styles.title}>{post.title}</h2>
+            <h3 className={styles.dish}>{post.dish}</h3>
+          </Link>
+          <p className={styles.rating}>{rating}/10</p>
         </div>
-      </Link>
+
+        <div className={styles.imageContainer}>
+          <Image
+            alt={post.title}
+            src={post.imageLink}
+            width={200}
+            height={200}
+            priority
+            className={styles.image}
+          />
+        </div>
+      </div>
+
       <div className={styles.footer}>
         <p className={styles.date}>{createdAt.toDateString()}</p>
         <div className={styles.heartContainer}>

@@ -15,8 +15,10 @@ export default function LeftNav() {
     toast("See ya!", {
       icon: "👋",
     });
-    auth.signOut();
     router.push("/");
+    setTimeout(() => {
+      auth.signOut();
+    }, 1000); // wait 100ms before signing out
   };
 
   return (
