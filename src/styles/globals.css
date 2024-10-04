@@ -134,10 +134,12 @@ button.btn-google {
   border: 2px solid var(--color-green);
 }
 
-button.btn-google:hover {
-  background-color: var(--color-green);
-  color: white;
-  filter: brightness(100%);
+@media (min-width: 769px) {
+  button.btn-google:hover {
+    background-color: var(--color-green);
+    color: white;
+    filter: brightness(100%);
+  }
 }
 
 .btn-google img {

@@ -37,6 +37,7 @@ export default function Home(props) {
     <main>
       <FeedSelector
         onFeedSelectionChange={(selection) => setFeedSelection(selection)}
+        feedSelection={feedSelection}
       />
       <PostFeed
         posts={props.posts}

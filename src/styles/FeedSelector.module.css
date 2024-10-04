@@ -24,6 +24,10 @@
   gap: 1.5rem;
 }
 
+.active {
+  background-color: var(--color-olivedrab); /* or any other color you want */
+}
+
 /* 
     DESKTOP SCREEN
 */

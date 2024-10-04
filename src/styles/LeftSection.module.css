@@ -46,6 +46,16 @@
   font-size: 30px;
 }
 
+.active {
+  background-color: var(--color-bg);
+  filter: brightness(90%);
+}
+
+.active:hover {
+  background-color: var(--color-bg);
+  filter: brightness(90%);
+}
+
 /* 
     DESKTOP SCREEN
 */

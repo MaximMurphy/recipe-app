@@ -21,7 +21,12 @@ export default function LeftNav() {
 
   return (
     <div className={styles.list}>
-      <Link href="/" className={styles.item}>
+      <Link
+        href="/"
+        className={`${styles.item} ${
+          router.pathname === "/" ? styles.active : ""
+        }`}
+      >
         <Icon icon="carbon:home" className={styles.icon} />
         <p>Food Feed</p>
       </Link>
@@ -29,17 +34,32 @@ export default function LeftNav() {
       {/* Hide when not logged in */}
 
       {!username ? (
-        <Link href="/enter" className={styles.item}>
+        <Link
+          href="/enter"
+          className={`${styles.item} ${
+            router.pathname === "/enter" ? styles.active : ""
+          }`}
+        >
           <Icon icon="carbon:login" className={styles.icon} />
           <p>Log In</p>
         </Link>
       ) : (
         <>
-          <Link href="/admin" className={styles.item}>
+          <Link
+            href="/admin"
+            className={`${styles.item} ${
+              router.pathname === "/admin" ? styles.active : ""
+            }`}
+          >
             <Icon icon="carbon:edit" className={styles.icon} />
             <p>Edit Reviews</p>
           </Link>
-          <Link href={`/${username}`} className={styles.item}>
+          <Link
+            href={`/${username}`}
+            className={`${styles.item} ${
+              router.pathname === `/[username]` ? styles.active : ""
+            }`}
+          >
             <Icon icon="carbon:user" className={styles.icon} />
             <p>User Profile</p>
           </Link>
