@@ -6,6 +6,7 @@ import {
   doc,
   deleteDoc,
   updateDoc,
+  getDoc,
   getFirestore,
 } from "firebase/firestore";
 import ImageUploader from "@/components/ImageUploader";
@@ -15,8 +16,6 @@ import { useRouter } from "next/router";
 
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import { useForm } from "react-hook-form";
-import ReactMarkdown from "react-markdown";
-import Link from "next/link";
 import toast from "react-hot-toast";
 
 export default function AdminPostEdit(props) {
@@ -28,8 +27,6 @@ export default function AdminPostEdit(props) {
 }
 
 function PostManager() {
-  const [preview, setPreview] = useState(false);
-
   const router = useRouter();
   const { slug } = router.query;
 
@@ -43,56 +40,31 @@ function PostManager() {
   );
   const [post] = useDocumentDataOnce(postRef);
 
-  const goToLiveView = () => {
-    toast("Great Post!", {
-      icon: "👍",
-    });
-    router.push(`/${post.username}/${post.slug}`);
-  };
-
   return (
     <main className={styles.container}>
       {post && (
-        <>
-          <section>
-            <h1>{post.title}</h1>
-            <p>ID: {post.slug}</p>
+        <section>
+          <h1>{post.title}</h1>
+          <p>ID: {post.slug}</p>
 
-            <PostForm
-              postRef={postRef}
-              defaultValues={post}
-              preview={preview}
-            />
-          </section>
-
-          <aside>
-            <h3>Tools</h3>
-            <div className={styles.tools}>
-              <button onClick={() => setPreview(!preview)}>
-                {preview ? "Edit" : "Preview"}
-              </button>
-
-              <button className="btn-blue" onClick={goToLiveView}>
-                Live view
-              </button>
-
-              <DeletePostButton postRef={postRef} />
-            </div>
-          </aside>
-        </>
+          <PostForm postRef={postRef} defaultValues={post} />
+          <div className={styles.tools}>
+            <DeletePostButton postRef={postRef} />
+          </div>
+        </section>
       )}
     </main>
   );
 }
 
-function PostForm({ defaultValues, postRef, preview }) {
+function PostForm({ defaultValues, postRef }) {
   const {
     register,
     handleSubmit,
+    setValue,
     formState,
     formState: { errors },
     reset,
-    watch,
   } = useForm({
     defaultValues,
     mode: "onChange",
@@ -108,6 +80,16 @@ function PostForm({ defaultValues, postRef, preview }) {
   };
 
   const updatePost = async ({ dish, content, published, rating }) => {
+    /*Download url is always null here since we arent uploading a new image when we go to edit the form. 
+    We only upload the image once, usually one the first time the person subits the form.
+    So because this condition if(downloadURL) is always false everything we dont reupload an image, no other values will be updated when we try to edit the form.
+    */
+    const postDoc = await getDoc(postRef);
+    const existingImageLink = postDoc.data().imageLink;
+
+    console.log(downloadURL);
+    console.log(existingImageLink);
+
     if (downloadURL) {
       await updateDoc(postRef, {
         dish,
@@ -115,6 +97,15 @@ function PostForm({ defaultValues, postRef, preview }) {
         published,
         rating,
         imageLink: downloadURL,
+        updatedAt: serverTimestamp(),
+      });
+    } else if (existingImageLink) {
+      await updateDoc(postRef, {
+        dish,
+        content,
+        published,
+        rating,
+        imageLink: existingImageLink,
         updatedAt: serverTimestamp(),
       });
     } else {
@@ -128,13 +119,7 @@ function PostForm({ defaultValues, postRef, preview }) {
 
   return (
     <form onSubmit={handleSubmit(updatePost)}>
-      {preview && (
-        <div className="card">
-          <ReactMarkdown>{watch("content")}</ReactMarkdown>
-        </div>
-      )}
-
-      <div className={preview ? styles.hidden : styles.controls}>
+      <div className={styles.controls}>
         <input
           className={styles.shortEntry}
           name="dish"
@@ -174,26 +159,17 @@ function PostForm({ defaultValues, postRef, preview }) {
           })}
         ></input>
 
-        <fieldset>
-          <input
-            className={styles.checkbox}
-            name="published"
-            type="checkbox"
-            {...register("published")}
-          />
-          <label>Published</label>
-        </fieldset>
-
         <button
           type="submit"
           className="btn-green"
           disabled={!isDirty || !isValid}
-          onClick={() => {
+          onClick={(e) => {
+            setValue("published", true);
             router.push("/admin");
             toast.success("Post updated successfully!");
           }}
         >
-          Save Changes
+          {defaultValues.published ? "Save Changes" : "Publish"}
         </button>
       </div>
     </form>

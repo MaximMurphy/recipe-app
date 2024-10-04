@@ -37,9 +37,10 @@ export default function PostFeed({ posts, feedSelection, admin }) {
 
   return (
     <div>
-      {filteredPosts.slice(0, (currentPage + 1) * LIMIT).map((post) => (
-        <PostItem post={post} key={post.slug} admin={admin} />
-      ))}
+      {filteredPosts.slice(0, (currentPage + 1) * LIMIT).map((post) => {
+        if (!post.createdAt) return <div>Loading...</div>;
+        return <PostItem post={post} key={post.slug} admin={admin} />;
+      })}
 
       {!postsEnd && <button onClick={getMorePosts}>Load more</button>}
 
