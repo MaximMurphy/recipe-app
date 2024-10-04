@@ -1,4 +1,6 @@
+import styles from "../styles/PostFeed.module.css";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function PostFeed({ posts, feedSelection, admin }) {
@@ -49,26 +51,42 @@ export default function PostFeed({ posts, feedSelection, admin }) {
 function PostItem({ post, admin = false }) {
   const rating = post.rating;
 
+  const createdAt =
+    typeof post?.createdAt === "number"
+      ? new Date(post.createdAt)
+      : post.createdAt.toDate();
+
   return (
-    <div className="card">
-      <Link legacyBehavior href={`/${post.username}`}>
-        <a>
-          <strong>By @{post.username}</strong>
-        </a>
-      </Link>
+    <div className={styles.card}>
+      <div className={styles.header}>
+        <div className={styles.info}>
+          <Link href={`/${post.username}`} className={styles.usernameContainer}>
+            <p className={styles.username}> {"@" + post.username}</p>
+          </Link>
+          <div className={styles.titleContainer}>
+            <Link href={`/${post.username}/${post.slug}`}>
+              <h2 className={styles.text}>{post.title}</h2>
+            </Link>
+            <h3 className={styles.text}>{post.dish}</h3>
+          </div>
+          <p className={styles.rating}>{rating}/10</p>
+        </div>
 
-      <Link legacyBehavior href={`/${post.username}/${post.slug}`}>
-        <h2>
-          <a>{post.title}</a>
-        </h2>
-      </Link>
-      <h3>{post.dish}</h3>
-      <break></break>
-
-      <footer>
-        <span>Rating: {rating}/10 </span>
-        <span className="push-left">😋 {post.heartCount || 0} </span>
-      </footer>
+        <div className={styles.imageContainer}>
+          <Image
+            alt={post.title}
+            src={post.imageLink}
+            width={200}
+            height={200}
+            priority
+            className={styles.image}
+          />
+        </div>
+      </div>
+      <div className={styles.footer}>
+        <p className={styles.date}>{createdAt.toDateString()}</p>
+        <p className={styles.heart}>😋 {post.heartCount || 0} </p>
+      </div>
 
       {/* If admin view, show extra controls for user */}
       {admin && (
