@@ -1,7 +1,6 @@
-.container {
-  min-height: fit-content;
-  display: flex;
-}
+/* 
+    MOBILE SCREEN
+*/
 
 .card {
   display: flex;
@@ -12,7 +11,7 @@
 
   border-radius: 10px;
   width: 100%;
-  height: fit-content;
+  height: 100%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -22,12 +21,12 @@
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
-  height: fit-content;
+  height: 100%;
 }
 
 .info {
   width: 100%;
-  height: fit-content;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -36,20 +35,10 @@
   margin-bottom: 20px;
 }
 
-.text {
-  width: 100%;
-  height: 100%;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  text-align: left;
-  margin: 0;
-}
-
 .usernameContainer {
   width: 100%;
   margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
 }
 
 .username {
@@ -57,6 +46,7 @@
   height: fit-content;
   font-size: 0.9rem;
   margin: 0;
+  padding-bottom: 10px;
 }
 
 .titleContainer {
@@ -70,8 +60,16 @@
   margin-bottom: 20px;
 }
 
-.titleContainer p {
-  font-size: 1rem;
+.title {
+  width: 100%;
+  height: fit-content;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.dish {
+  font-weight: 400;
+  margin: 0;
 }
 
 .rating {
@@ -111,7 +109,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 50px;
+  height: 40px;
   width: 100%;
   border-top: 1px solid #ddd;
 }
@@ -126,30 +124,33 @@
   justify-content: flex-start;
 }
 
-.heart {
-  font-size: 1rem;
-  width: 100%;
+.heartContainer {
+  width: fit-content;
   height: 100%;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
   justify-content: flex-end;
+  gap: 5px;
 }
 
-.heartContainer {
+.heartContainer p {
+  margin: 0;
+}
+
+.editOptions {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  margin: 0;
+  width: 100%;
 }
 
-.heartContainer p {
-  margin: 0px;
-}
+/* 
+    DESKTOP SCREEN
+*/
 
-@media only screen and (min-width: 769px) {
+@media (min-width: 769px) {
   .header {
     flex-direction: row;
   }
@@ -157,7 +158,7 @@
   .info {
     align-items: flex-start;
     justify-content: flex-start;
-    height: fit-content;
+    height: 250px;
     width: 300px;
     margin-bottom: 40px;
   }

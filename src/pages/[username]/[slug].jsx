@@ -1,6 +1,5 @@
 import styles from "@/styles/Post.module.css";
-import { UserContext } from "@/lib/context";
-import { firestore, getUserWithUsername, postToJSON } from "@/lib/firebase";
+import { getUserWithUsername, postToJSON } from "@/lib/firebase";
 import {
   doc,
   getDocs,
@@ -13,7 +12,6 @@ import {
 
 import Link from "next/link";
 import { useDocumentData } from "react-firebase-hooks/firestore";
-import { useContext } from "react";
 import PostContent from "@/components/PostContent";
 import HeartButton from "@/components/HeartButton";
 import AuthCheck from "@/components/AuthCheck";
@@ -65,29 +63,9 @@ export default function Post(props) {
 
   const post = realtimePost || props.post;
 
-  const { user: currentUser } = useContext(UserContext);
-
   return (
     <main className={styles.container}>
-      <section>
-        <PostContent post={post} />
-      </section>
-
-      <aside className="card">
-        <p>
-          <strong>{post.heartCount || 0} 😋</strong>
-        </p>
-
-        <AuthCheck
-          fallback={
-            <Link href="/enter">
-              <button>😋 Sign Up</button>
-            </Link>
-          }
-        >
-          <HeartButton postRef={postRef} />
-        </AuthCheck>
-      </aside>
+      <PostContent post={post} postRef={postRef} />
     </main>
   );
 }

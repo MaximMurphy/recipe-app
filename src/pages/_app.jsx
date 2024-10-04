@@ -1,8 +1,15 @@
 import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
+import LeftSection from "@/components/LeftSection";
+import RightSection from "@/components/RightSection";
+import Footer from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
 import { UserContext } from "@/lib/context";
 import { useUserData } from "@/lib/hooks";
+
+/* 🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🥑 🥦 🥬 🥒 🌶️ 🫑 
+🌽 🥕 🫒 🧄 🧅 🥔 🍠 🥐 🥯 🍞 🥖 🥨 🧀 🥞 🧇 🥓 🥩 🌭 🍔 🍟 🍕 🌮 🍣 🍩
+*/
 
 export default function App({ Component, pageProps }) {
   const userData = useUserData();
@@ -11,7 +18,12 @@ export default function App({ Component, pageProps }) {
     <>
       <UserContext.Provider value={userData}>
         <Navbar />
-        <Component {...pageProps} />
+        <LeftSection />
+        <div className="main-content">
+          <Component {...pageProps} />
+        </div>
+        <RightSection />
+        <Footer />
         <Toaster />
       </UserContext.Provider>
     </>

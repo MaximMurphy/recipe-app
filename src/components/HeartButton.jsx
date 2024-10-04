@@ -1,16 +1,15 @@
-import { firestore, auth } from "@/lib/firebase";
+import styles from "@/styles/Post.module.css";
+import { Icon } from "@iconify-icon/react";
+import { auth } from "@/lib/firebase";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { increment, writeBatch, doc, getFirestore } from "firebase/firestore";
 
 // Allows user to heart or like a post
 export default function Heart({ postRef }) {
   // Listen to heart document for currently logged in user
-  const heartRef = doc(
-    getFirestore(),
-    postRef.path,
-    "hearts",
-    auth.currentUser.uid
-  );
+  const heartRef = auth.currentUser
+    ? doc(getFirestore(), postRef.path, "hearts", auth.currentUser.uid)
+    : null;
   const [heartDoc] = useDocument(heartRef);
 
   // Create a user-to-post relationship
@@ -35,8 +34,12 @@ export default function Heart({ postRef }) {
   };
 
   return heartDoc?.exists() ? (
-    <button onClick={removeHeart}>🤢</button>
+    <button onClick={removeHeart}>
+      <Icon icon="line-md:heart-filled" />
+    </button>
   ) : (
-    <button onClick={addHeart}>😋</button>
+    <button onClick={addHeart}>
+      <Icon icon="line-md:heart" />
+    </button>
   );
 }

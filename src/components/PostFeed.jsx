@@ -1,40 +1,103 @@
+import styles from "../styles/PostFeed.module.css";
+import { Icon } from "@iconify-icon/react";
 import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
-export default function PostFeed({ posts, admin }) {
-  return posts
-    ? posts.map((post) => (
-        <PostItem post={post} key={post.slug} admin={admin} />
-      ))
-    : null;
+export default function PostFeed({ posts, feedSelection, admin }) {
+  const [filteredPosts, setFilteredPosts] = useState(posts);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [postsEnd, setPostsEnd] = useState(false);
+
+  useEffect(() => {
+    let filtered = posts;
+
+    if (feedSelection === "popular") {
+      filtered = filtered
+        .filter((post) => post.heartCount >= 1)
+        .sort((a, b) => b.heartCount - a.heartCount);
+    }
+
+    setFilteredPosts(filtered);
+  }, [feedSelection, posts]);
+
+  const LIMIT = 10;
+
+  const getMorePosts = () => {
+    const startIndex = currentPage * LIMIT;
+    const endIndex = startIndex + LIMIT;
+    const newPosts = filteredPosts.slice(startIndex, endIndex);
+
+    setCurrentPage(currentPage + 1);
+
+    if (newPosts.length < LIMIT) {
+      setPostsEnd(true);
+    }
+  };
+  if (!filteredPosts) return <div>Loading...</div>;
+
+  return (
+    <div>
+      {filteredPosts.slice(0, (currentPage + 1) * LIMIT).map((post) => {
+        if (!post.createdAt) return <div>Loading...</div>;
+        return <PostItem post={post} key={post.slug} admin={admin} />;
+      })}
+
+      {!postsEnd && <button onClick={getMorePosts}>Load more</button>}
+
+      {postsEnd && "That's all!"}
+    </div>
+  );
 }
 
 function PostItem({ post, admin = false }) {
   const rating = post.rating;
 
+  const createdAt =
+    typeof post?.createdAt === "number"
+      ? new Date(post.createdAt)
+      : post.createdAt.toDate();
+
   return (
-    <div className="card">
-      <Link legacyBehavior href={`/${post.username}`}>
-        <a>
-          <strong>By @{post.username}</strong>
-        </a>
-      </Link>
+    <div className={styles.card}>
+      <div className={styles.header}>
+        <div className={styles.info}>
+          <Link href={`/${post.username}`} className={styles.usernameContainer}>
+            <p className={styles.username}> {"@" + post.username}</p>
+          </Link>
+          <Link
+            href={`/${post.username}/${post.slug}`}
+            className={styles.titleContainer}
+          >
+            <h2 className={styles.title}>{post.title}</h2>
+            <h3 className={styles.dish}>{post.dish}</h3>
+          </Link>
+          <p className={styles.rating}>{rating}/10</p>
+        </div>
 
-      <Link legacyBehavior href={`/${post.username}/${post.slug}`}>
-        <h2>
-          <a>{post.title}</a>
-        </h2>
-      </Link>
-      <h3>{post.dish}</h3>
-      <break></break>
+        <div className={styles.imageContainer}>
+          <Image
+            alt={post.title}
+            src={post.imageLink}
+            width={200}
+            height={200}
+            priority
+            className={styles.image}
+          />
+        </div>
+      </div>
 
-      <footer>
-        <span>Rating: {rating}/10 </span>
-        <span className="push-left">😋 {post.heartCount || 0} </span>
-      </footer>
+      <div className={styles.footer}>
+        <p className={styles.date}>{createdAt.toDateString()}</p>
+        <div className={styles.heartContainer}>
+          <Icon icon="mdi:heart" className={styles.heartIcon} />
+          <p>{post.heartCount || 0} </p>
+        </div>
+      </div>
 
       {/* If admin view, show extra controls for user */}
       {admin && (
-        <>
+        <div className={styles.editOptions}>
           <Link href={`/admin/${post.slug}`}>
             <h3>
               <button className="btn-blue">Edit</button>
@@ -46,7 +109,7 @@ function PostItem({ post, admin = false }) {
           ) : (
             <p className="text-danger">Unpublished</p>
           )}
-        </>
+        </div>
       )}
     </div>
   );

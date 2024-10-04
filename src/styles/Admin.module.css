@@ -1,23 +1,18 @@
 .container {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
 }
 
 .container section {
-  width: 60vw;
-  margin-right: 1rem;
+  width: 100%;
 }
 
-.container aside {
+.tools {
   display: flex;
   flex-direction: column;
-  width: 20%;
-  min-width: 250px;
-  min-height: 200px;
-  text-align: center;
-  position: sticky;
-  top: 80px;
-  height: 0;
+  align-items: center;
+  width: 100%;
 }
 
 .uploadContainer {
@@ -43,15 +38,33 @@
 }
 
 .shortEntry {
-  max-height: 20vh;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+.bigEntry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  height: fit-content;
+  resize: none;
 }
 
 .input {
   outline: none;
   border: none;
-  font-size: 2rem;
+  font-size: 25px;
   width: 100%;
   padding: 5px 10px;
+  background-color: var(--color-bg);
+  border-radius: 5px;
 }
 
 .checkbox {
@@ -59,23 +72,34 @@
   width: auto;
 }
 
-.rating {
-  padding-top: 10px;
+.ratingLabel {
+  margin-top: 20px;
 }
 
-@media only screen and (max-width: 768px) {
+.ratingInput {
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+
+@media only screen and (min-width: 769px) {
   .container {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .container section {
-    width: 100%;
-  }
-
-  .container aside {
-    width: 100%;
-    top: 0;
-    position: relative;
-    padding-bottom: 80%;
+    width: 60vw;
+    margin-right: 1rem;
   }
 }

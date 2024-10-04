@@ -1,8 +1,9 @@
-import { auth, firestore, googleAuthProvider } from "@/lib/firebase";
+import { auth, googleAuthProvider } from "@/lib/firebase";
 import { doc, writeBatch, getDoc, getFirestore } from "firebase/firestore";
-import { signInWithPopup, signInAnonymously, signOut } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import { UserContext } from "@/lib/context";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 import { useCallback, useContext, useEffect, useState } from "react";
 import debounce from "lodash.debounce";
@@ -15,7 +16,7 @@ export default function Enter(props) {
   // 2. user signed in, but missing username <UsernameForm />
   // 3. user signed in, has username <SignOutButton />
   return (
-    <main>
+    <main className="enter">
       {user ? (
         !username ? (
           <UsernameForm />
@@ -32,10 +33,23 @@ export default function Enter(props) {
 // Sign in with Google button
 function SignInButton() {
   const router = useRouter();
+  const { username } = useContext(UserContext);
 
   const signInWithGoogle = async () => {
-    await signInWithPopup(auth, googleAuthProvider);
-    router.push("/enter");
+    try {
+      await signInWithPopup(auth, googleAuthProvider);
+      const userDoc = await getDoc(
+        doc(getFirestore(), "users", auth.currentUser.uid)
+      );
+      const username = userDoc.data().username;
+      if (username) {
+        router.push("/");
+      } else {
+        router.push("/enter");
+      }
+    } catch (error) {
+      console.error(error);
+    }
 
     toast("Howdy!", {
       icon: "🤠",
@@ -43,23 +57,36 @@ function SignInButton() {
   };
 
   return (
-    <div className="enter">
+    <div className="sign-in-button">
+      <div className="emoji-background">
+        <p>
+          🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🥑 🥦 🥬 🥒 🌶️ 🫑
+          🌽 🥕 🫒 🧄 🧅 🥔 🍠 🥐 🥯 🍞 🥖 🥨 🧀 🥞 🧇 🥓 🥩 🌭 🍔 🍟 🍕 🌮 🍣
+          🍩 🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🫐 🍒 🍑 🥭 🍍 🥥 🥝 🍅 🥑 🥦 🥬 🥒 🌶️
+          🫑 🌽 🥕 🫒 🧄 🧅 🥔 🍠 🥐 🥯 🍞 🥖 🥨 🧀 🥞 🧇 🥓 🥩 🌭 🍔 🍟 🍕 🌮
+          🍣 🍩
+        </p>
+      </div>
       <button className="btn-google" onClick={signInWithGoogle}>
-        <img src={"/google.png"} width="30px" alt="google" /> Sign in with
-        Google
+        <Image src={"/google.png"} width={30} height={30} alt="google" />
+        Sign in with Google
       </button>
-      {/* 
-      <button onClick={() => signInAnonymously(auth)}>
-        Sign in Anonymously
-      </button>
-      */}
     </div>
   );
 }
 
 // Sign out button
 function SignOutButton() {
-  return <button onClick={() => auth.signOut()}>Sign Out</button>;
+  const router = useRouter();
+  const signOutNow = () => {
+    toast("See ya!", {
+      icon: "👋",
+    });
+    auth.signOut();
+    router.push("/");
+  };
+
+  return <button onClick={signOutNow}>Sign Out</button>;
 }
 
 // Username form
@@ -148,17 +175,6 @@ function UsernameForm() {
           <button type="submit" className="btn-select" disabled={!isValid}>
             Choose
           </button>
-
-          {/*
-          <h3>Debug State</h3>
-          <div>
-            Username: {formValue}
-            <br />
-            Loading: {loading.toString()}
-            <br />
-            Username Valid: {isValid.toString()}
-          </div>
-        */}
         </form>
       </section>
     )
