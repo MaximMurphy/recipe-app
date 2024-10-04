@@ -77,41 +77,41 @@ function PostForm({ defaultValues, postRef }) {
   };
 
   const updatePost = async ({ dish, content, published, rating }) => {
-    /*Download url is always null here since we arent uploading a new image when we go to edit the form. 
-    We only upload the image once, usually one the first time the person subits the form.
-    So because this condition if(downloadURL) is always false everything we dont reupload an image, no other values will be updated when we try to edit the form.
-    */
     const postDoc = await getDoc(postRef);
-    const existingImageLink = postDoc.data().imageLink;
+    if (postDoc.exists()) {
+      const existingImageLink = postDoc.data().imageLink;
 
-    console.log(downloadURL);
-    console.log(existingImageLink);
+      console.log(downloadURL);
+      console.log(existingImageLink);
 
-    if (downloadURL) {
-      await updateDoc(postRef, {
-        dish,
-        content,
-        published,
-        rating,
-        imageLink: downloadURL,
-        updatedAt: serverTimestamp(),
-      });
-    } else if (existingImageLink) {
-      await updateDoc(postRef, {
-        dish,
-        content,
-        published,
-        rating,
-        imageLink: existingImageLink,
-        updatedAt: serverTimestamp(),
-      });
+      if (downloadURL) {
+        await updateDoc(postRef, {
+          dish,
+          content,
+          published,
+          rating,
+          imageLink: downloadURL,
+          updatedAt: serverTimestamp(),
+        });
+      } else if (existingImageLink) {
+        await updateDoc(postRef, {
+          dish,
+          content,
+          published,
+          rating,
+          imageLink: existingImageLink,
+          updatedAt: serverTimestamp(),
+        });
+      } else {
+        console.error("Download URL is null");
+      }
+
+      reset({ dish, content, published, rating });
+
+      //toast.success("Post updated successfully!");
     } else {
-      console.error("Download URL is null");
+      console.error("Post does not exist");
     }
-
-    reset({ dish, content, published, rating });
-
-    //toast.success("Post updated successfully!");
   };
 
   return (
