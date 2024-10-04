@@ -84,6 +84,15 @@
   padding: 15px;
 }
 
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+
 @media only screen and (min-width: 769px) {
   .container {
     flex-direction: row;

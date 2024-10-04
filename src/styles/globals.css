@@ -205,7 +205,7 @@ button.btn-google {
 }
 
 .card-img-center {
-  width: 30%;
+  width: fit-content;
   display: block;
   margin: auto;
   border-radius: 50%;
@@ -310,6 +310,7 @@ input[type="file"] {
   flex-direction: column;
   text-align: center;
   align-items: center;
+  width: 100%;
 }
 
 .hidden {

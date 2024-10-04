@@ -48,9 +48,6 @@ function PostManager() {
           <p>ID: {post.slug}</p>
 
           <PostForm postRef={postRef} defaultValues={post} />
-          <div className={styles.tools}>
-            <DeletePostButton postRef={postRef} />
-          </div>
         </section>
       )}
     </main>
@@ -158,19 +155,21 @@ function PostForm({ defaultValues, postRef }) {
             required: { value: true, message: "content is required" },
           })}
         ></input>
-
-        <button
-          type="submit"
-          className="btn-green"
-          disabled={!isDirty || !isValid}
-          onClick={(e) => {
-            setValue("published", true);
-            router.push("/admin");
-            toast.success("Post updated successfully!");
-          }}
-        >
-          {defaultValues.published ? "Save Changes" : "Publish"}
-        </button>
+        <div className={styles.buttonContainer}>
+          <button
+            type="submit"
+            className="btn-green"
+            disabled={!isDirty || !isValid}
+            onClick={(e) => {
+              setValue("published", true);
+              router.push("/admin");
+              toast.success("Post updated successfully!");
+            }}
+          >
+            {defaultValues.published ? "Save Changes" : "Publish"}
+          </button>
+          <DeletePostButton postRef={postRef} />
+        </div>
       </div>
     </form>
   );

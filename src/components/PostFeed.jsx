@@ -1,4 +1,5 @@
 import styles from "../styles/PostFeed.module.css";
+import { Icon } from "@iconify-icon/react";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -86,12 +87,15 @@ function PostItem({ post, admin = false }) {
       </div>
       <div className={styles.footer}>
         <p className={styles.date}>{createdAt.toDateString()}</p>
-        <p className={styles.heart}>😋 {post.heartCount || 0} </p>
+        <div className={styles.heartContainer}>
+          <Icon icon="mdi:heart" className={styles.heartIcon} />
+          <p>{post.heartCount || 0} </p>
+        </div>
       </div>
 
       {/* If admin view, show extra controls for user */}
       {admin && (
-        <>
+        <div className={styles.editOptions}>
           <Link href={`/admin/${post.slug}`}>
             <h3>
               <button className="btn-blue">Edit</button>
@@ -103,7 +107,7 @@ function PostItem({ post, admin = false }) {
           ) : (
             <p className="text-danger">Unpublished</p>
           )}
-        </>
+        </div>
       )}
     </div>
   );
