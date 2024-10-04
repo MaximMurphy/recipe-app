@@ -47,7 +47,6 @@ export default function ImageUploader({ onUpload }) {
 
         // Pass the url to the updatePost function
         onUpload(url);
-        console.log(url);
       });
   };
 

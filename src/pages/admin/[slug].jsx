@@ -99,23 +99,27 @@ function PostForm({ defaultValues, postRef, preview }) {
   });
 
   const { isValid, isDirty } = formState;
-  const [downloadURL, setDownloadURL] = useState(null);
-
   const router = useRouter();
+
+  const [downloadURL, setDownloadURL] = useState("");
 
   const handleImageUpload = (url) => {
     setDownloadURL(url);
   };
 
   const updatePost = async ({ dish, content, published, rating }) => {
-    await updateDoc(postRef, {
-      dish,
-      content,
-      published,
-      rating,
-      imageLink: downloadURL,
-      updatedAt: serverTimestamp(),
-    });
+    if (downloadURL) {
+      await updateDoc(postRef, {
+        dish,
+        content,
+        published,
+        rating,
+        imageLink: downloadURL,
+        updatedAt: serverTimestamp(),
+      });
+    } else {
+      console.error("Download URL is null");
+    }
 
     reset({ dish, content, published, rating });
 

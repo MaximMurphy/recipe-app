@@ -24,7 +24,7 @@ function PostList() {
     auth.currentUser.uid,
     "posts"
   );
-  const postQuery = query(ref, orderBy("createdAt"));
+  const postQuery = query(ref, orderBy("createdAt", "desc"));
 
   const [querySnapshot] = useCollection(postQuery);
 
