@@ -67,15 +67,17 @@ function PostManager() {
 
           <aside>
             <h3>Tools</h3>
-            <button onClick={() => setPreview(!preview)}>
-              {preview ? "Edit" : "Preview"}
-            </button>
+            <div className={styles.tools}>
+              <button onClick={() => setPreview(!preview)}>
+                {preview ? "Edit" : "Preview"}
+              </button>
 
-            <button className="btn-blue" onClick={goToLiveView}>
-              Live view
-            </button>
+              <button className="btn-blue" onClick={goToLiveView}>
+                Live view
+              </button>
 
-            <DeletePostButton postRef={postRef} />
+              <DeletePostButton postRef={postRef} />
+            </div>
           </aside>
         </>
       )}
@@ -130,12 +132,12 @@ function PostForm({ defaultValues, postRef, preview }) {
 
       <div className={preview ? styles.hidden : styles.controls}>
         <input
-          className="shortEntry"
+          className={styles.shortEntry}
           name="dish"
           {...register("dish", {
             required: { value: true, message: "content is required" },
           })}
-          placeholder="[enter dish name]"
+          placeholder="Enter the dish name:"
         ></input>
 
         <div className="uploadContainer">
@@ -143,21 +145,22 @@ function PostForm({ defaultValues, postRef, preview }) {
         </div>
 
         <textarea
-          className="bigEntry"
+          className={styles.bigEntry}
           name="content"
           {...register("content", {
             maxLength: { value: 20000, message: "content is too long" },
             minLength: { value: 10, message: "content is too short" },
             required: { value: true, message: "content is required" },
           })}
-          placeholder="[paste image link here]"
+          placeholder="Write your review here!"
         ></textarea>
 
         {errors.content && (
           <p className="text-danger">{errors.content.message}</p>
         )}
-        <label className="rating">Rating: </label>
+        <label className={styles.ratingLabel}>Rating: </label>
         <input
+          className={styles.ratingInput}
           type="number"
           name="rating"
           min="0"

@@ -1,23 +1,32 @@
 .container {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
 }
 
 .container section {
-  width: 60vw;
-  margin-right: 1rem;
+  width: 100%;
 }
 
 .container aside {
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
-  width: 20%;
-  min-width: 250px;
-  min-height: 200px;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  width: 100%;
   position: sticky;
-  top: 80px;
-  height: 0;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding-bottom: 20px;
+}
+
+.tools {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
 
 .uploadContainer {
@@ -43,7 +52,23 @@
 }
 
 .shortEntry {
-  max-height: 20vh;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+.bigEntry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  height: fit-content;
+  resize: none;
 }
 
 .input {
@@ -61,23 +86,37 @@
   width: auto;
 }
 
-.rating {
-  padding-top: 10px;
+.ratingLabel {
+  margin-top: 20px;
 }
 
-@media only screen and (max-width: 768px) {
+.ratingInput {
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+@media only screen and (min-width: 769px) {
   .container {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .container section {
-    width: 100%;
+    width: 60vw;
+    margin-right: 1rem;
   }
 
   .container aside {
+    width: fit-content;
+    height: fit-content;
+    margin-top: 60px;
     width: 100%;
-    top: 0;
-    position: relative;
-    padding-bottom: 80%;
+    top: 100px;
+  }
+
+  .tools {
+    flex-direction: column;
   }
 }
