@@ -60,31 +60,34 @@ function PostItem({ post, admin = false }) {
 
   return (
     <div className={styles.card}>
-      <div className={styles.header}>
-        <div className={styles.info}>
-          <Link href={`/${post.username}`} className={styles.usernameContainer}>
-            <p className={styles.username}> {"@" + post.username}</p>
-          </Link>
-          <div className={styles.titleContainer}>
-            <Link href={`/${post.username}/${post.slug}`}>
-              <h2 className={styles.text}>{post.title}</h2>
+      <Link href={`/${post.username}/${post.slug}`}>
+        <div className={styles.header}>
+          <div className={styles.info}>
+            <Link
+              href={`/${post.username}`}
+              className={styles.usernameContainer}
+            >
+              <p className={styles.username}> {"@" + post.username}</p>
             </Link>
-            <h3 className={styles.text}>{post.dish}</h3>
+            <div className={styles.titleContainer}>
+              <h2 className={styles.title}>{post.title}</h2>
+              <h3 className={styles.dish}>{post.dish}</h3>
+            </div>
+            <p className={styles.rating}>{rating}/10</p>
           </div>
-          <p className={styles.rating}>{rating}/10</p>
-        </div>
 
-        <div className={styles.imageContainer}>
-          <Image
-            alt={post.title}
-            src={post.imageLink}
-            width={200}
-            height={200}
-            priority
-            className={styles.image}
-          />
+          <div className={styles.imageContainer}>
+            <Image
+              alt={post.title}
+              src={post.imageLink}
+              width={200}
+              height={200}
+              priority
+              className={styles.image}
+            />
+          </div>
         </div>
-      </div>
+      </Link>
       <div className={styles.footer}>
         <p className={styles.date}>{createdAt.toDateString()}</p>
         <div className={styles.heartContainer}>

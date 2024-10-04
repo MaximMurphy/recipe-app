@@ -21,10 +21,9 @@ export default function PostContent({ post, postRef }) {
             <p className={styles.username}> {"@" + post.username}</p>
           </Link>
           <div className={styles.titleContainer}>
-            <Link href={`/${post.username}/${post.slug}`}>
-              <h2 className={styles.text}>{post.title}</h2>
-            </Link>
+            <h2 className={styles.text}>{post.title}</h2>
             <h3 className={styles.text}>{post.dish}</h3>
+            <p className={styles.text}>{post.content}</p>
           </div>
           <p className={styles.rating}>{rating}/10</p>
         </div>
