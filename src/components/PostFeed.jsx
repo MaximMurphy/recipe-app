@@ -4,22 +4,44 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-export default function PostFeed({ posts, feedSelection, admin }) {
+export default function PostFeed({ posts, feedSelection, sortOption, admin }) {
   const [filteredPosts, setFilteredPosts] = useState(posts);
   const [currentPage, setCurrentPage] = useState(0);
   const [postsEnd, setPostsEnd] = useState(false);
+  const [prevSortOption, setPrevSortOption] = useState(sortOption);
 
   useEffect(() => {
     let filtered = posts;
 
     if (feedSelection === "popular") {
-      filtered = filtered
-        .filter((post) => post.heartCount >= 1)
-        .sort((a, b) => b.heartCount - a.heartCount);
+      filtered = filtered.filter((post) => post.heartCount >= 2);
+    } else if (feedSelection === "all") {
+      filtered = posts;
     }
 
+    if (prevSortOption && prevSortOption !== sortOption) {
+      filtered = posts;
+    }
+
+    switch (sortOption) {
+      case "newestToOldest":
+        filtered = filtered.sort((a, b) => b.createdAt - a.createdAt);
+        break;
+      case "oldestToNewest":
+        filtered = filtered.sort((a, b) => a.createdAt - b.createdAt);
+        break;
+      case "highestToLowest":
+        filtered = filtered.sort((a, b) => b.rating - a.rating);
+        break;
+      case "lowestToHighest":
+        filtered = filtered.sort((a, b) => a.rating - b.rating);
+        break;
+      default:
+        break;
+    }
+    setPrevSortOption(sortOption);
     setFilteredPosts(filtered);
-  }, [feedSelection, posts]);
+  }, [feedSelection, sortOption, posts, prevSortOption]);
 
   const LIMIT = 10;
 
@@ -43,7 +65,11 @@ export default function PostFeed({ posts, feedSelection, admin }) {
         return <PostItem post={post} key={post.slug} admin={admin} />;
       })}
 
-      {!postsEnd && <button onClick={getMorePosts}>Load more</button>}
+      {!postsEnd && (
+        <button onClick={getMorePosts} className={styles.loadButton}>
+          Load more
+        </button>
+      )}
 
       {postsEnd && "That's all!"}
     </div>

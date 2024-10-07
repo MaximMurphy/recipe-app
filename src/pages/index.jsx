@@ -32,16 +32,23 @@ export async function getServerSideProps(context) {
 
 export default function Home(props) {
   const [feedSelection, setFeedSelection] = useState("all");
+  const [sortOption, setSortOption] = useState(null);
+
+  const handleSortChange = (selectedOption) => {
+    setSortOption(selectedOption);
+  };
 
   return (
     <main>
       <FeedSelector
         onFeedSelectionChange={(selection) => setFeedSelection(selection)}
         feedSelection={feedSelection}
+        onSortChange={handleSortChange}
       />
       <PostFeed
         posts={props.posts}
         feedSelection={feedSelection}
+        sortOption={sortOption}
         admin={undefined}
       />
     </main>
