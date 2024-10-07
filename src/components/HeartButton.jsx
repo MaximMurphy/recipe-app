@@ -34,11 +34,11 @@ export default function Heart({ postRef }) {
   };
 
   return heartDoc?.exists() ? (
-    <button onClick={removeHeart}>
+    <button onClick={removeHeart} className="heading">
       <Icon icon="line-md:heart-filled" />
     </button>
   ) : (
-    <button onClick={addHeart}>
+    <button onClick={addHeart} className="heading">
       <Icon icon="line-md:heart" />
     </button>
   );

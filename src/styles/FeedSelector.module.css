@@ -11,6 +11,7 @@
   justify-content: space-between;
   gap: 20px;
   margin-bottom: 40px;
+  color: var(--color-green);
 }
 
 .container p {
@@ -20,26 +21,32 @@
 .select {
   margin: 0;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid transparent;
   border-radius: 5px;
   width: fit-content;
   font-family: "Noto Sans", sans-serif;
   font-size: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: whitesmoke;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  color: black;
-  background-image: linear-gradient(45deg, transparent 50%, gray 50%),
-    linear-gradient(135deg, gray 50%, transparent 50%);
+  color: var(--color-green);
+  background-image: linear-gradient(
+      45deg,
+      transparent 50%,
+      var(--color-green) 50%
+    ),
+    linear-gradient(135deg, var(--color-green) 50%, transparent 50%);
   background-position: calc(100% - 10px) calc(50% - 0px),
     calc(100% - 5px) calc(50% - 0px), calc(100% - 2.5px) 50%;
   background-size: 5px 5px, 5px 5px;
   background-repeat: no-repeat;
 }
 
-.option {
-  padding: 10px;
+.select:hover {
+  filter: brightness(90%);
+  cursor: pointer;
 }
 
 .optionFirst {
@@ -72,12 +79,15 @@
 }
 
 .button {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: var(--color-green);
+  background-color: whitesmoke;
 }
 
 .active {
+  color: var(--color-bg);
   background-color: var(--color-olivedrab);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* 

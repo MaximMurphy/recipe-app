@@ -28,7 +28,7 @@ export default function Navbar(props) {
       <div className={styles.rightSide}>
         {!username && (
           <Link href="/enter">
-            <button className="btn-base">Log in</button>
+            <button className={styles.login}>Log in</button>
           </Link>
         )}
 

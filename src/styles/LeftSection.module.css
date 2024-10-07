@@ -15,8 +15,9 @@
   height: auto;
   border: 2px solid var(--color-olivedrab);
   padding: 20px;
-  background-color: white;
+  background-color: whitesmoke;
   border-radius: 10px;
+  gap: 0.5rem;
 }
 
 .item {
@@ -34,12 +35,12 @@
   font-size: 15px;
   border-radius: 10px;
   color: var(--color-green);
-  background-color: white;
+  background-color: whitesmoke;
+  border: var(--color-green) 1.5px solid;
 }
 
 .item:hover {
-  background-color: var(--color-bg);
-  filter: brightness(100%);
+  filter: brightness(90%);
 }
 
 .icon {
@@ -47,13 +48,18 @@
 }
 
 .active {
-  background-color: var(--color-bg);
-  filter: brightness(90%);
+  background-color: var(--color-olivedrab);
+  color: whitesmoke;
+  border: 1.5px solid transparent;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .active:hover {
-  background-color: var(--color-bg);
   filter: brightness(90%);
+}
+
+.signout {
+  box-shadow: none;
 }
 
 /* 
@@ -69,7 +75,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: white;
+    background-color: whitesmoke;
     border-right: 2px solid var(--color-olivedrab);
     padding-top: 100px;
   }

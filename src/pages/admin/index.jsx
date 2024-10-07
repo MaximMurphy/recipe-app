@@ -10,7 +10,7 @@ export default function AdminPostsPage(props) {
   return (
     <main>
       <AuthCheck>
-        <h1>Manage your reviews</h1>
+        <h1 className="heading">Manage your reviews</h1>
         <PostList />
       </AuthCheck>
     </main>
@@ -18,7 +18,7 @@ export default function AdminPostsPage(props) {
 }
 
 function PostList() {
-  if (!auth.currentUser) return <div>Loading...</div>;
+  if (!auth.currentUser) return <div className="heading">Loading...</div>;
   const ref = collection(
     getFirestore(),
     "users",

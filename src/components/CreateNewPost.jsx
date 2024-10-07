@@ -50,7 +50,7 @@ export default function CreateNewPost() {
   };
 
   return (
-    <form onSubmit={createPost}>
+    <form onSubmit={createPost} className={styles.newPostForm}>
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}

@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap");
 
 :root {
-  --color-bg: #eef0f1;
-  --color-text: #08090a;
+  --color-bg: #e8e8e8;
+  --color-text: rgb(55, 70, 30);
   --color-gray: #b5bdc4;
   --color-lightgray: #cecece;
   --color-red: rgb(206, 75, 39);
   --color-blue: rgb(62, 77, 131);
   --color-lightgreen: yellowgreen;
   --color-olivedrab: olivedrab;
-  --color-green: darkolivegreen;
+  --color-green: rgb(55, 70, 30);
 }
 html,
 body {
@@ -24,6 +24,10 @@ body {
 .main-content {
   width: 80%;
   margin: auto;
+}
+
+.heading {
+  color: var(--color-green);
 }
 
 @media (min-width: 769px) {
@@ -63,6 +67,10 @@ code {
   overflow-x: scroll;
 }
 
+.auth-check {
+  color: saddlebrown;
+}
+
 /* Buttons */
 
 .btn,
@@ -100,45 +108,43 @@ button[disabled] {
 
 button.btn-base {
   background-color: olivedrab;
-  color: white;
+  color: whitesmoke;
 }
 
 button.btn-select {
   background-color: var(--color-lightgreen);
-  color: white;
+  color: whitesmoke;
 }
 
 button.btn-green {
   background-color: var(--color-lightgreen);
-  color: white;
+  color: whitesmoke;
 }
 
 button.btn-blue {
   background-color: var(--color-olivedrab);
-  color: white;
+  color: whitesmoke;
 }
 
 button.btn-danger {
   background-color: var(--color-red);
-  color: white;
+  color: whitesmoke;
 }
 
 button.btn-google {
-  background-color: white;
+  background-color: whitesmoke;
   color: var(--color-green);
   padding: 25px;
   border-radius: 10px;
   height: auto;
   width: fit-content;
   z-index: 10;
-  border: 2px solid var(--color-green);
+  border: 2px solid var(--color-olivedrab);
 }
 
 @media (min-width: 769px) {
   button.btn-google:hover {
-    background-color: var(--color-green);
-    color: white;
-    filter: brightness(100%);
+    filter: brightness(90%);
   }
 }
 
@@ -148,7 +154,7 @@ button.btn-google {
 }
 
 .sign-in-button {
-  background-color: white;
+  background-color: whitesmoke;
   height: 350px;
   width: 500px;
   border-radius: 10px;
@@ -162,7 +168,7 @@ button.btn-google {
 
 @media (min-width: 769px) {
   .sign-in-button {
-    background-color: white;
+    background-color: whitesmoke;
     height: 500px;
     width: 500px;
   }
@@ -195,7 +201,7 @@ button.btn-google {
 .card {
   padding: 1.25rem 2rem 2rem 2rem;
   margin: 1rem 0;
-  background-color: white;
+  background-color: whitesmoke;
   border: 2px solid var(--color-gray);
   border-radius: 10px;
 }
@@ -213,7 +219,7 @@ button.btn-google {
 }
 
 .card-info {
-  color: white;
+  color: whitesmoke;
   background: var(--color-gray);
 }
 
@@ -246,7 +252,7 @@ input[type="file"] {
 .upload-snippet {
   width: 75%;
   margin-left: auto;
-  background: white;
+  background: whitesmoke;
   padding: 5px;
   margin: 5px 0;
 }
@@ -259,14 +265,16 @@ input[type="file"] {
 }
 
 .button-upload {
-  background-color: white;
+  background-color: var(--color-olivedrab);
   height: 25px;
   padding: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border: 2px solid var(--color-olivedrab);
+  border: 2px solid transparent;
+  color: whitesmoke;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   font-weight: bold;
 }

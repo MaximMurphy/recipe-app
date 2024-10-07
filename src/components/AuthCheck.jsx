@@ -8,5 +8,9 @@ export default function AuthCheck(props) {
 
   return username
     ? props.children
-    : props.fallback || <Link href="/enter">You must be signed in</Link>;
+    : props.fallback || (
+        <Link href="/enter" className="auth-check">
+          You must be signed in
+        </Link>
+      );
 }

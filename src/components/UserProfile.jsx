@@ -12,9 +12,9 @@ export default function UserProfile({ user }) {
         alt="User Profile Pic"
       />
       <p>
-        <i>@{user.username}</i>
+        <i className="heading">@{user.username}</i>
       </p>
-      <h1>{user.displayName || "Anonymous User"}</h1>
+      <h1 className="heading">{user.displayName || "Anonymous User"}</h1>
     </div>
   );
 }
