@@ -3,6 +3,7 @@ import { Icon } from "@iconify-icon/react";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { getUserWithUsername } from "../lib/firebase";
 
 export default function PostFeed({ posts, feedSelection, sortOption, admin }) {
   const [filteredPosts, setFilteredPosts] = useState(posts);
@@ -77,6 +78,19 @@ export default function PostFeed({ posts, feedSelection, sortOption, admin }) {
 }
 
 function PostItem({ post, admin = false }) {
+  const [userPhotoURL, setUserPhotoURL] = useState(null);
+
+  useEffect(() => {
+    const fetchUserPhoto = async () => {
+      const userDoc = await getUserWithUsername(post.username);
+      if (userDoc) {
+        const photoURL = userDoc.data().photoURL;
+        setUserPhotoURL(photoURL);
+      }
+    };
+    fetchUserPhoto();
+  }, [post.username]);
+
   const rating = post.rating;
 
   const createdAt =
@@ -89,6 +103,17 @@ function PostItem({ post, admin = false }) {
       <div className={styles.header}>
         <div className={styles.info}>
           <Link href={`/${post.username}`} className={styles.usernameContainer}>
+            {userPhotoURL ? (
+              <Image
+                alt={post.username}
+                src={userPhotoURL}
+                width={30}
+                height={30}
+                className={styles.profilePic}
+              />
+            ) : (
+              <div className={styles.placeholderPic} />
+            )}
             <p className={styles.username}> {"@" + post.username}</p>
           </Link>
           <Link
