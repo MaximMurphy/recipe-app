@@ -84,6 +84,11 @@ function PostForm({ defaultValues, postRef }) {
       console.log(downloadURL);
       console.log(existingImageLink);
 
+      if (!downloadURL && !existingImageLink) {
+        toast.error("Must upload photo to submit review");
+        return;
+      }
+
       if (downloadURL) {
         await updateDoc(postRef, {
           dish,
@@ -121,22 +126,26 @@ function PostForm({ defaultValues, postRef }) {
           className={styles.shortEntry}
           name="dish"
           {...register("dish", {
-            required: { value: true, message: "content is required" },
+            required: { value: true, message: "Content is required" },
           })}
           placeholder="Enter the dish name:"
         ></input>
 
         <div className="uploadContainer">
-          <ImageUploader onUpload={handleImageUpload} />
+          {downloadURL || defaultValues?.imageLink ? (
+            <p className={styles.uploaded}>Photo Uploaded</p>
+          ) : (
+            <ImageUploader onUpload={handleImageUpload} />
+          )}
         </div>
 
         <textarea
           className={styles.bigEntry}
           name="content"
           {...register("content", {
-            maxLength: { value: 20000, message: "content is too long" },
-            minLength: { value: 10, message: "content is too short" },
-            required: { value: true, message: "content is required" },
+            maxLength: { value: 20000, message: "Content is too long" },
+            minLength: { value: 10, message: "Content is too short" },
+            required: { value: true, message: "Content is required" },
           })}
           placeholder="Write your review here!"
         ></textarea>
@@ -144,7 +153,7 @@ function PostForm({ defaultValues, postRef }) {
         {errors.content && (
           <p className="text-danger">{errors.content.message}</p>
         )}
-        <label className={styles.ratingLabel}>Rating: </label>
+        <label className={styles.ratingLabel}>Rating (out of 10): </label>
         <input
           className={styles.ratingInput}
           type="number"
@@ -152,14 +161,22 @@ function PostForm({ defaultValues, postRef }) {
           min="0"
           max="10"
           {...register("rating", {
-            required: { value: true, message: "content is required" },
+            required: { value: true, message: "Content is required" },
+            validate: (value) => {
+              if (value < 0 || value > 10) {
+                return "Rating must be between 0 and 10";
+              }
+              return true;
+            },
           })}
         ></input>
         <div className={styles.buttonContainer}>
           <button
             type="submit"
             className="btn-green"
-            disabled={!isDirty || !isValid}
+            disabled={
+              !isDirty || !isValid || (!downloadURL && !defaultValues.imageLink)
+            }
             onClick={(e) => {
               setValue("published", true);
               router.push("/admin");

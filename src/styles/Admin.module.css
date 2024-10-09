@@ -67,6 +67,11 @@
   border-radius: 5px;
 }
 
+.uploaded {
+  font-weight: bold;
+  padding: 10px 0px;
+}
+
 .checkbox {
   display: inline;
   width: auto;

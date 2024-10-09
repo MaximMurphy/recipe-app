@@ -55,16 +55,14 @@ export default function ImageUploader({ onUpload }) {
       {uploading && <h3>{progress}%</h3>}
 
       {!uploading && (
-        <>
-          <label className="button-upload">
-            📸 Upload Img
-            <input
-              type="file"
-              onChange={uploadFile}
-              accept="image/x-png,image/gif,image/jpeg"
-            />
-          </label>
-        </>
+        <label className="button-upload">
+          📸 Upload Img
+          <input
+            type="file"
+            onChange={uploadFile}
+            accept="image/x-png,image/gif,image/jpeg"
+          />
+        </label>
       )}
     </div>
   );
