@@ -7,7 +7,7 @@ export default function Footer() {
       <Link href="https://www.maximmurphy.com" target="_blank" rel="noreferrer">
         Developed by Maxim Murphy.
       </Link>
-      <p>Review Your Food © 2024. All rights reserved.</p>
+      <p>Review Your Food © 2025. All rights reserved.</p>
     </section>
   );
 }
